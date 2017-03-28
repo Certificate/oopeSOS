@@ -25,7 +25,7 @@ public class Kayttoliittyma {
                 run = 0;
             }
             else if (!onkoOikein){
-                System.out.println("PerseilyBranch");
+                System.out.println("Test123");
                 run = 1;
             }
         }
