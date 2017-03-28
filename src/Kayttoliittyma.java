@@ -25,7 +25,7 @@ public class Kayttoliittyma {
                 run = 0;
             }
             else if (!onkoOikein){
-                System.out.println("Väärin ja GitPäivitysFail!");
+                System.out.println("PerseilyBranch");
                 run = 1;
             }
         }
