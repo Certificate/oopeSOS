@@ -25,7 +25,7 @@ public class Kayttoliittyma {
                 run = 0;
             }
             else if (!onkoOikein){
-                System.out.println("Väärin meni!");
+                System.out.println("Väärin ja GitPäivitysFail!");
                 run = 1;
             }
         }
