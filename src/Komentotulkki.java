@@ -3,6 +3,9 @@
  */
 public class Komentotulkki {
 
+    //
+    // Tarkistetaan ovatko annetun syötteen merkit ok
+    //
     public boolean tarkistus (String str){
         boolean ok = false;
         for (int i = 0; i < str.length(); i++){

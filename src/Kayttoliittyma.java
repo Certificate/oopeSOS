@@ -60,10 +60,14 @@ public class Kayttoliittyma {
             System.out.println(dir.lueString());
             boolean onkoOikein = tulkki.tarkistus(vastaus);
                     // TODO Do-while silmukka syötteen oikein saamiseksi
-            if (onkoOikein == true)
+            if (onkoOikein) {
+                System.out.println("Oikein meni!");
                 run = 0;
-            else
+            }
+            else if (!onkoOikein){
+                System.out.println("Väärin meni!");
                 run = 1;
+            }
         }
     }
 }
