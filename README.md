@@ -1,4 +1,4 @@
-# oopeSOS
+# oopeSOS (lol apua :D)
 Vuoden 2017 Oopen harkkatyön repo
 
 Käytän tätä lähinnä synkronointia varten, mutta oppiipahan samalla gitin käyttöä!
