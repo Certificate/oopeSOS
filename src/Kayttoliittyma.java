@@ -9,7 +9,9 @@ import apulaiset.In;
 
 public class Kayttoliittyma {
 
+    // dir = directory :)
     private Hakemisto dir = new Hakemisto();
+
     private Komentotulkki tulkki = new Komentotulkki();
 
     public void run(){
@@ -25,7 +27,7 @@ public class Kayttoliittyma {
                 run = 0;
             }
             else if (!onkoOikein){
-                System.out.println("Test123");
+                System.out.println("asdfg");
                 run = 1;
             }
         }
