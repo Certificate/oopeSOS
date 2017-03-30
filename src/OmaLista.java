@@ -1,9 +1,12 @@
 import apulaiset.Ooperoiva;
-import com.sun.xml.internal.bind.v2.TODO;
+import fi.uta.csjola.oope.lista.LinkitettyLista;
 
 /**
- * Created by java on 23/03/17.
+ *  Omalista-luokka
  */
-public class OmaLista{
+
+public class OmaLista {
+
+
 // TODO This stuff right here
 }

@@ -19,7 +19,6 @@ public class Kayttoliittyma {
         while(run == 1) {
             dir.luePolku();
             String vastaus = In.readString();
-            System.out.println(dir.lueString());
             boolean onkoOikein = tulkki.tarkistus(vastaus);
                     // TODO Do-while silmukka syötteen oikein saamiseksi
             if (onkoOikein) {
@@ -29,6 +28,13 @@ public class Kayttoliittyma {
             else if (!onkoOikein){
                 System.out.println("asdfg");
                 run = 1;
+            }
+
+            if (tulkki.tulkkaa(vastaus) == 0){
+                run = 0;
+            }
+            else{
+                System.out.println("Saatanan vittu perkele");
             }
         }
     }

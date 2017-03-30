@@ -70,4 +70,17 @@ public class Komentotulkki {
 
 
     }
+
+    public int tulkkaa(String komento){
+        if (komento == "exit"){
+            System.out.println("Toimiiko tää vittu");
+            return 0;
+        }
+        else{
+            System.out.println("Väärä komento! Kokeile uudestaan.");
+            return 1;
+        }
+    }
+
 }
+
