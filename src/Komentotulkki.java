@@ -65,15 +65,11 @@ public class Komentotulkki {
                 ok = false;
             }
         }
-        System.out.println("Totuusarvo palautuksessa: "+ok);
         return ok;
-
-
     }
 
     public int tulkkaa(String komento){
-        if (komento == "exit"){
-            System.out.println("Toimiiko tää vittu");
+        if (komento.equals(EXIT)){
             return 0;
         }
         else{
@@ -81,6 +77,5 @@ public class Komentotulkki {
             return 1;
         }
     }
-
 }
 
