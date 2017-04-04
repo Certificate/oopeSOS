@@ -1,3 +1,5 @@
+package oopeSOS;
+
 /**
  *  Komentoja tulkkaava tulkki :) .
  */

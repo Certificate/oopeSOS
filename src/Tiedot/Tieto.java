@@ -9,11 +9,10 @@ public abstract class Tieto {
     private StringBuilder nimi = new StringBuilder();
 
     public Tieto() {
-        asetaString("null");
+        asetaString("");
     }
-
-    public Tieto(String x){
-        asetaString(x);
+    public Tieto(String str){
+        asetaString(str);
     }
 
     public void asetaString(String str){

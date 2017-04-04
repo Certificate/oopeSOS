@@ -1,3 +1,5 @@
+package oopeSOS;
+
 import Tiedot.Hakemisto;
 import apulaiset.In;
 
@@ -30,7 +32,6 @@ public class Kayttoliittyma {
             else if (!tulkki.tarkistus(vastaus)){
                 System.out.println("Error!");
             }
-
         }
         System.out.print("Shell terminated.");
     }
