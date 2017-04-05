@@ -20,7 +20,7 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
         lista = new OmaLista();
     }
 
-    public void asetaYli(Hakemisto yli) throws IllegalArgumentException{
+    public void asetaYli(Hakemisto yli){
         this.ylihakemisto = yli;
     }
 
@@ -34,10 +34,13 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
             Hakemisto apuHakemisto = new Hakemisto(new StringBuilder(nimi), null);
 
             if (lista.hae(apuTiedosto) != null) {
+                System.out.println("Hakee apuTiedostoa");
                 return (Tieto)lista.hae(apuTiedosto);
             } else if (lista.hae(apuHakemisto) != null) {
+                System.out.println("Hakee apuHakemistoa");
                 return (Tieto)lista.hae(apuHakemisto);
             } else {
+                System.out.println("Heittää suoraan nullille");
                 return null;
             }
         }
@@ -68,7 +71,7 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
     }
 
     public String toString() {
-        return lueString() + " / " +lista.koko();
+        return super.lueString() + "/ " +lista.koko();
     }
 
 

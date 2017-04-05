@@ -11,13 +11,11 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
 
     public Object hae(Object get) {
         if(get != null) {
-            int i = 0;
-            while (i < koko()) {
-                if (get.equals(alkio(i))) {
-                    System.out.println("Sisältä");
+            for (int i = 0; i < koko(); i++){
+                System.out.println("GG JoLa");
+                if (get.toString().equals(alkio(i).toString())) {
                     return alkio(i);
                 }
-                i++;
             }
             return null;
         }
@@ -25,14 +23,13 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
             return null;
     }
 
+
     public boolean lisaa(Object uusi) {
         if (uusi != null) {
-            String help = uusi.toString();
             int i = 0;
             if (koko() > 0) {
                 while (i < koko()) {
-                    String temp2 = alkio(i).toString();
-                    int z = help.compareTo(temp2);
+                    int z = uusi.toString().compareTo(alkio(i).toString());
                     if (z > 0) {
                         i++;
                     } else if (z <= 0) {
@@ -56,10 +53,8 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
     }
 
     public Object poista(Object poistettava) {
-        int i = 0;
-        while(i < koko()) {
+        for (int i = 0; i < koko; i++){
             if(poistettava.equals(alkio(i))) { poista(i);}
-            i++;
         }
         return null;
     }

@@ -6,7 +6,7 @@ import oopeSOS.Komentotulkki;
  *  TIEDOT- YLILUOKKA
  */
 
-public abstract class Tieto {
+public abstract class Tieto implements Comparable<Tieto>{
 
     Komentotulkki tulkkaus = new Komentotulkki();
     private StringBuilder nimi = new StringBuilder();
@@ -42,5 +42,9 @@ public abstract class Tieto {
 
     public Tieto(Tieto alkuperainen){
         asetaString(alkuperainen.lueStringBuilder());
+    }
+
+    int compareTo(Tieto o){
+
     }
 }
