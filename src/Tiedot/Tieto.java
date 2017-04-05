@@ -6,12 +6,12 @@ import oopeSOS.Komentotulkki;
  *  TIEDOT- YLILUOKKA
  */
 
-public abstract class Tieto implements Comparable<Tieto>{
+public abstract class Tieto {
 
     Komentotulkki tulkkaus = new Komentotulkki();
     private StringBuilder nimi = new StringBuilder();
 
-    public Tieto(StringBuilder str){
+    public Tieto(StringBuilder str) {
         asetaString(str);
     }
 
@@ -19,20 +19,19 @@ public abstract class Tieto implements Comparable<Tieto>{
         asetaString(new StringBuilder("null"));
     }
 
-    public void asetaString(StringBuilder str) throws IllegalArgumentException{
-        if(tulkkaus.tarkistus(str.toString()) == true){
+    public void asetaString(StringBuilder str) throws IllegalArgumentException {
+        if (tulkkaus.tarkistus(str.toString()) == true) {
             this.nimi = (str);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException();
         }
     }
 
-    public String lueString(){
+    public String lueString() {
         return this.nimi.toString();
     }
 
-    public StringBuilder lueStringBuilder(){
+    public StringBuilder lueStringBuilder() {
         return this.nimi;
     }
 
@@ -40,11 +39,19 @@ public abstract class Tieto implements Comparable<Tieto>{
         return lueString();
     }
 
-    public Tieto(Tieto alkuperainen){
+    public Tieto(Tieto alkuperainen) {
         asetaString(alkuperainen.lueStringBuilder());
     }
 
-    int compareTo(Tieto o){
 
+    public boolean equals(Object asia){
+        Tieto apu = (Tieto)asia;
+        if(this.lueString() == ((Tieto) asia).lueString()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
+

@@ -13,7 +13,7 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
         if(get != null) {
             for (int i = 0; i < koko(); i++){
                 System.out.println("GG JoLa");
-                if (get.toString().equals(alkio(i).toString())) {
+                if (get.equals(alkio(i))) {
                     return alkio(i);
                 }
             }
