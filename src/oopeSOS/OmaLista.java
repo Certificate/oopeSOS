@@ -9,28 +9,33 @@ import fi.uta.csjola.oope.lista.*;
 
 public class OmaLista extends LinkitettyLista implements Ooperoiva{
 
-    public Object hae(Object haettava) {
-        int i = 0;
-        while(i < koko()) {
-            if(haettava.equals(alkio(i))) {
-                return alkio(i);
+    public Object hae(Object get) {
+        if(get != null) {
+            int i = 0;
+            while (i < koko()) {
+                if (get.equals(alkio(i))) {
+                    System.out.println("Sisältä");
+                    return alkio(i);
+                }
+                i++;
             }
-            i++;
+            return null;
         }
-        return null;
+        else
+            return null;
     }
 
     public boolean lisaa(Object uusi) {
         if (uusi != null) {
-            String apu = uusi.toString();
+            String help = uusi.toString();
             int i = 0;
             if (koko() > 0) {
                 while (i < koko()) {
                     String temp2 = alkio(i).toString();
-                    int k = apu.compareTo(temp2);
-                    if (k > 0) {
+                    int z = help.compareTo(temp2);
+                    if (z > 0) {
                         i++;
-                    } else if (k <= 0) {
+                    } else if (z <= 0) {
                         lisaa(i, uusi);
                         return true;
                     }

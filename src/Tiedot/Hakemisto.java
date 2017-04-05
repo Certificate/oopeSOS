@@ -29,22 +29,27 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
     }
 
     public Tieto hae(String nimi){
-        Tiedosto apuTiedosto = new Tiedosto(new StringBuilder(nimi), 0);
-        Hakemisto apuHakemisto = new Hakemisto(new StringBuilder(nimi), null);
+        if(nimi != null) {
+            Tiedosto apuTiedosto = new Tiedosto(new StringBuilder(nimi), 1);
+            Hakemisto apuHakemisto = new Hakemisto(new StringBuilder(nimi), null);
 
-        if (lista.hae(apuTiedosto) != null){
-            return (Tieto)lista.hae(apuTiedosto);
+            if (lista.hae(apuTiedosto) != null) {
+                return (Tieto)lista.hae(apuTiedosto);
+            } else if (lista.hae(apuHakemisto) != null) {
+                return (Tieto)lista.hae(apuHakemisto);
+            } else {
+                return null;
+            }
         }
-        else if (lista.hae(apuHakemisto) != null){
-            return (Tieto)lista.hae(apuHakemisto);
-        }
-        else{
+        else
             return null;
-        }
     }
 
     public boolean lisaa(Tieto lisattava){
-    return lista.lisaa(lisattava);
+        if (lista.hae(lisattava) == null )
+            return lista.lisaa(lisattava);
+        else
+            return false;
     }
 
     public Tieto poista(String nimi){
@@ -60,6 +65,10 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
         else{
             return null;
         }
+    }
+
+    public String toString() {
+        return lueString() + " / " +lista.koko();
     }
 
 
