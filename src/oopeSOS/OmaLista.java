@@ -21,8 +21,8 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
     }
 
     public boolean lisaa(Object uusi){
-        int i = 0;
         String apu = uusi.toString();
+        int i = 0;
         if(koko() > 0){
             while(i < koko()){
                 String temp2 = alkio(i).toString();

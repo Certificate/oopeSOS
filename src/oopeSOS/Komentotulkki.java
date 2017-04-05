@@ -44,6 +44,8 @@ public class Komentotulkki {
     private static final String EXIT = "exit";
     // lopettaa ohjelman.
 
+    private String polku = "/>";
+
     // Tarkistetaan ovatko annetun syötteen merkit ok
     public boolean tarkistus (String str){
         boolean ok = false;
@@ -72,6 +74,14 @@ public class Komentotulkki {
             System.out.println("Väärä komento! Kokeile uudestaan.");
             return 1;
         }
+    }
+
+    public void asetaPolku(String str){
+        this.polku = str;
+    }
+
+    public void luePolku(){
+        System.out.print(polku);
     }
 }
 
