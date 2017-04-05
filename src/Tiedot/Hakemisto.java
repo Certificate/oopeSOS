@@ -1,28 +1,30 @@
 package Tiedot;
 
+import oopeSOS.OmaLista;
+
 /**
  *  Hakemisto-alaluokka
  */
 public class Hakemisto extends Tieto{
 
-    // Omat jutut ja komennot polun määrittämiseksi.
-    // UI kutsuu luePolkua aina komennon jälkeen.
-    private String polku = "/>";
+    private Hakemisto ylihakemisto = new Hakemisto();
+    Hakemisto alihakemisto = new Hakemisto();
+    OmaLista lista = new OmaLista();
 
-    public void asetaPolku(String str){
-        this.polku = str;
+
+    public Hakemisto(){
+        super();
     }
 
-    public void luePolku(){
-
-        System.out.print(polku);
+    public Hakemisto(String str, Hakemisto yli){
+        super(str);
+        asetaYli(yli);
     }
 
-    //
-    //
-    //
+    public void asetaYli(Hakemisto yli) throws IllegalArgumentException{
+        this.ylihakemisto = yli;
+    }
 
-// TODO Ali- ja yläluokan koodaus
 
 
 

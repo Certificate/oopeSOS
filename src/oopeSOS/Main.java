@@ -1,5 +1,6 @@
-import Tiedot.Hakemisto;
-import Tiedot.Tieto;
+package oopeSOS;
+
+import Tiedot.Tiedosto;
 
 public class Main {
 

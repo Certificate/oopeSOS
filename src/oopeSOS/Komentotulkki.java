@@ -1,12 +1,10 @@
+package oopeSOS;
+
 /**
  *  Komentoja tulkkaava tulkki :) .
  */
 public class Komentotulkki {
-
-    //Alla lähes kaikki harjoitustyössä käytettävät komennot
-
-
-    private static final String POLKU = "/>";
+    //Alla kaikki harjoitustyössä käytettävät komennot
 
     private static final String MAKEDIR = "md";
     // luo parametrina annetulla nimellä alihakemiston nykyiseen
@@ -44,11 +42,11 @@ public class Komentotulkki {
     // ja hakemistossa ei ole vielä uuden nimistä tiedostoa.
 
     private static final String EXIT = "exit";
-    // lopetaa ohjelman.
+    // lopettaa ohjelman.
 
-    //
+    private String polku = "/>";
+
     // Tarkistetaan ovatko annetun syötteen merkit ok
-    //
     public boolean tarkistus (String str){
         boolean ok = false;
         for (int i = 0; i < str.length(); i++){
@@ -65,9 +63,25 @@ public class Komentotulkki {
                 ok = false;
             }
         }
-        System.out.println("Totuusarvo palautuksessa: "+ok);
         return ok;
+    }
 
+    public int tulkkaa(String komento){
+        if (komento.equals(EXIT)){
+            return 0;
+        }
+        else{
+            System.out.println("Väärä komento! Kokeile uudestaan.");
+            return 1;
+        }
+    }
 
+    public void asetaPolku(String str){
+        this.polku = str;
+    }
+
+    public void luePolku(){
+        System.out.print(polku);
     }
 }
+

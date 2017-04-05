@@ -1,3 +1,5 @@
+package oopeSOS;
+
 import Tiedot.Hakemisto;
 import apulaiset.In;
 
@@ -19,17 +21,18 @@ public class Kayttoliittyma {
         while(run == 1) {
             dir.luePolku();
             String vastaus = In.readString();
-            System.out.println(dir.lueString());
-            boolean onkoOikein = tulkki.tarkistus(vastaus);
-                    // TODO Do-while silmukka syötteen oikein saamiseksi
-            if (onkoOikein) {
-                System.out.println("Oikein meni!");
-                run = 0;
+            if (tulkki.tarkistus(vastaus)) {
+                if (tulkki.tulkkaa(vastaus) == 0){
+                    run = 0;
+                }
+                else{
+                    System.out.println("Ei ainakaan exit");
+                }
             }
-            else if (!onkoOikein){
-                System.out.println("asdfg");
-                run = 1;
+            else if (!tulkki.tarkistus(vastaus)){
+                System.out.println("Error!");
             }
         }
+        System.out.print("Shell terminated.");
     }
 }
