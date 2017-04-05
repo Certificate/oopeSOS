@@ -10,7 +10,8 @@ public class Main {
         //Kayttoliittyma UI = new Kayttoliittyma();
         //UI.run();
 
-        Hakemisto hakemisto = new Hakemisto(new StringBuilder("cats"), null);
+        Tiedosto know = new Tiedosto(new StringBuilder("apina"), 1337);
+        System.out.println(know.toString());
     }
 }
 

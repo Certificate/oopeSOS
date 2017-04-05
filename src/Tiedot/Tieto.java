@@ -26,11 +26,13 @@ public abstract class Tieto {
         else {
             throw new IllegalArgumentException();
         }
-
     }
 
     public String lueString(){
         return this.nimi.toString();
     }
 
+    public String toString() {
+        return lueString();
+    }
 }

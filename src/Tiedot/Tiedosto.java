@@ -26,4 +26,8 @@ public class Tiedosto extends Tieto {
     public int lueKoko(){
         return this.koko;
     }
+
+    public String toString() {
+        return super.toString() + " " + koko;
+    }
 }
