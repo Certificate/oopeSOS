@@ -9,7 +9,7 @@ public class Tiedosto extends Tieto {
     // Koko tavuina
     private int koko;
 
-    public Tiedosto( String str, int i){
+    public Tiedosto( StringBuilder str, int i){
         super(str);
         asetaKoko(i);
     }

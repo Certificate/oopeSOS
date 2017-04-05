@@ -11,16 +11,17 @@ public abstract class Tieto {
     Komentotulkki tulkkaus = new Komentotulkki();
     private StringBuilder nimi = new StringBuilder();
 
-    public Tieto(String str){
+    public Tieto(StringBuilder str){
         asetaString(str);
     }
+
     public Tieto() {
-        asetaString("null");
+        asetaString(new StringBuilder("null"));
     }
 
-    public void asetaString(String str) throws IllegalArgumentException{
-        if(tulkkaus.tarkistus(str) == true){
-            this.nimi.append(str);
+    public void asetaString(StringBuilder str) throws IllegalArgumentException{
+        if(tulkkaus.tarkistus(str.toString()) == true){
+            this.nimi = (str);
         }
         else {
             throw new IllegalArgumentException();

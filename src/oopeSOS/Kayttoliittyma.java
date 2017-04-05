@@ -12,7 +12,7 @@ import apulaiset.In;
 public class Kayttoliittyma {
 
     // dir = directory :)
-    private Hakemisto dir = new Hakemisto();
+    private Komentotulkki dir = new Komentotulkki();
 
     private Komentotulkki tulkki = new Komentotulkki();
 

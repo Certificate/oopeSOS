@@ -1,13 +1,16 @@
 package oopeSOS;
 
-import Tiedot.Tiedosto;
+
+import Tiedot.*;
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("Welcome to SOS.");
-        Kayttoliittyma UI = new Kayttoliittyma();
-        UI.run();
+        //Kayttoliittyma UI = new Kayttoliittyma();
+        //UI.run();
+
+        Hakemisto hakemisto = new Hakemisto(new StringBuilder("cats"), null);
     }
 }
 
