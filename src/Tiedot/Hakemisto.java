@@ -25,19 +25,41 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
     }
 
     public LinkitettyLista sisalto(){
-    return null;
+        return lista;
     }
 
     public Tieto hae(String nimi){
-    return null;
+        Tiedosto apuTiedosto = new Tiedosto(new StringBuilder(nimi), 0);
+        Hakemisto apuHakemisto = new Hakemisto(new StringBuilder(nimi), null);
+
+        if (lista.hae(apuTiedosto) != null){
+            return (Tieto)lista.hae(apuTiedosto);
+        }
+        else if (lista.hae(apuHakemisto) != null){
+            return (Tieto)lista.hae(apuHakemisto);
+        }
+        else{
+            return null;
+        }
     }
 
     public boolean lisaa(Tieto lisattava){
-    return false;
+    return lista.lisaa(lisattava);
     }
 
     public Tieto poista(String nimi){
-    return null;
+        Tiedosto apuTiedosto = new Tiedosto(new StringBuilder(nimi), 0);
+        Hakemisto apuHakemisto = new Hakemisto(new StringBuilder(nimi), null);
+
+        if (lista.hae(apuTiedosto) != null){
+            return (Tieto)lista.poista(apuTiedosto);
+        }
+        else if (lista.hae(apuHakemisto) != null){
+            return (Tieto)lista.poista(apuHakemisto);
+        }
+        else{
+            return null;
+        }
     }
 
 
