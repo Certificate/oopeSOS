@@ -20,31 +20,34 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
         return null;
     }
 
-    public boolean lisaa(Object uusi){
-        String apu = uusi.toString();
-        int i = 0;
-        if(koko() > 0){
-            while(i < koko()){
-                String temp2 = alkio(i).toString();
-                int k = apu.compareTo(temp2);
-                if(k>0){
-                    i++;
+    public boolean lisaa(Object uusi) {
+        if (uusi != null) {
+            String apu = uusi.toString();
+            int i = 0;
+            if (koko() > 0) {
+                while (i < koko()) {
+                    String temp2 = alkio(i).toString();
+                    int k = apu.compareTo(temp2);
+                    if (k > 0) {
+                        i++;
+                    } else if (k <= 0) {
+                        lisaa(i, uusi);
+                        return true;
+                    }
+                    if (i == koko()) {
+                        lisaaLoppuun(uusi);
+                        return true;
+                    }
                 }
-                else if(k <= 0){
-                    lisaa(i,uusi);
-                    return true;
-                }
-                if(k == koko()) {
-                    lisaaLoppuun(uusi);
-                    return true;
-                }
+            } else {
+                lisaaAlkuun(uusi);
+                return true;
             }
+            return false;
         }
         else {
-            lisaaAlkuun(uusi);
-            return true;
+            return false;
         }
-        return false;
     }
 
     public Object poista(Object poistettava) {

@@ -30,4 +30,9 @@ public class Tiedosto extends Tieto {
     public String toString() {
         return super.toString() + " " + koko;
     }
+
+    public Tiedosto(Tiedosto alkuperainen){
+        super(alkuperainen);
+        asetaKoko(alkuperainen.lueKoko());
+    }
 }

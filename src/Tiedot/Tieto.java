@@ -32,7 +32,15 @@ public abstract class Tieto {
         return this.nimi.toString();
     }
 
+    public StringBuilder lueStringBuilder(){
+        return this.nimi;
+    }
+
     public String toString() {
         return lueString();
+    }
+
+    public Tieto(Tieto alkuperainen){
+        asetaString(alkuperainen.lueStringBuilder());
     }
 }
