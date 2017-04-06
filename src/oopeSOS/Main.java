@@ -70,7 +70,6 @@ public class Main {
         // Testi 27.
         else if (testinumero == 27) {
             Hakemisto hakemisto = new Hakemisto(new StringBuilder("cats"), null);
-            System.out.println("TOIMIIKO TÄÄ");
             Tiedosto tiedosto1 = new Tiedosto(new StringBuilder("grumpy_cat.jpeg"), 335932);
             Tiedosto tiedosto2 = new Tiedosto(new StringBuilder("cannot_be_unseen.jpeg"), 29614);
             Tiedosto tiedosto3 = new Tiedosto(new StringBuilder("ceiling_cat.gif"), 3677);

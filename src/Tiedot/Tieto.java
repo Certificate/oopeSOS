@@ -46,7 +46,11 @@ public abstract class Tieto {
 
     public boolean equals(Object asia){
         Tieto apu = (Tieto)asia;
-        if(this.lueString() == ((Tieto) asia).lueString()){
+        //System.out.println(" ");
+        //System.out.println("Original: "+lueString());
+        //System.out.println("Verrattava: "+apu.lueString());
+        //System.out.println(" ");
+        if(this.lueString().equals(apu.lueString())){
             return true;
         }
         else{

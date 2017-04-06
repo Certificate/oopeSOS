@@ -12,7 +12,6 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
     public Object hae(Object get) {
         if(get != null) {
             for (int i = 0; i < koko(); i++){
-                System.out.println("GG JoLa");
                 if (get.equals(alkio(i))) {
                     return alkio(i);
                 }
@@ -53,7 +52,7 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
     }
 
     public Object poista(Object poistettava) {
-        for (int i = 0; i < koko; i++){
+        for (int i = 0; i < koko(); i++){
             if(poistettava.equals(alkio(i))) { poista(i);}
         }
         return null;
