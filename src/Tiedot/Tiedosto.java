@@ -15,12 +15,12 @@ public class Tiedosto extends Tieto {
     }
 
     public void asetaKoko(int i) throws IllegalArgumentException{
-        //if (i > 0) {
+        if (i > 0) {
             this.koko = i;
-        //}
-        //else{
-         //   throw new IllegalArgumentException();
-        //}
+        }
+        else{
+            throw new IllegalArgumentException();
+        }
     }
 
     public int lueKoko(){

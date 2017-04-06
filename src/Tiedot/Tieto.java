@@ -6,7 +6,7 @@ import oopeSOS.Komentotulkki;
  *  TIEDOT- YLILUOKKA
  */
 
-public abstract class Tieto {
+public abstract class Tieto  implements Comparable<Tieto>{
 
     Komentotulkki tulkkaus = new Komentotulkki();
     private StringBuilder nimi = new StringBuilder();
@@ -45,17 +45,23 @@ public abstract class Tieto {
 
 
     public boolean equals(Object asia){
-        Tieto apu = (Tieto)asia;
-        //System.out.println(" ");
-        //System.out.println("Original: "+lueString());
-        //System.out.println("Verrattava: "+apu.lueString());
-        //System.out.println(" ");
-        if(this.lueString().equals(apu.lueString())){
-            return true;
+        if (asia != null && asia  instanceof Tieto) {
+            Tieto apu = (Tieto)asia;
+            if (this.lueString().equals(apu.lueString())) {
+                return true;
+            } else {
+                return false;
+            }
         }
         else{
             return false;
         }
+    }
+
+    public int compareTo(Tieto asia){
+        int vertailu = this.nimi.toString().compareTo(asia.nimi.toString());
+        return vertailu;
+
     }
 }
 
