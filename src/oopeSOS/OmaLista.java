@@ -52,12 +52,14 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
     }
 
     public Object poista(Object poistettava) {
-        for (int i = 0; i < koko(); i++){
-            if(poistettava.equals(alkio(i))) { poista(i);}
+        if (poistettava != null) {
+            for (int i = 0; i < koko(); i++) {
+                if (poistettava.equals(alkio(i))) {
+                    return poista(i);
+
+                }
+            }
         }
         return null;
     }
-
-
-
 }
