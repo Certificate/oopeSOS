@@ -1,4 +1,4 @@
-package oopeSOS;
+package omalista;
 
 import apulaiset.Ooperoiva;
 import fi.uta.csjola.oope.lista.*;

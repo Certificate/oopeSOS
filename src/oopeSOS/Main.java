@@ -1,7 +1,6 @@
 package oopeSOS;
 
-import fi.uta.csjola.oope.lista.*;
-import Tiedot.*;
+import tiedot.*;
 import apulaiset.*;
 
 public class Main {
@@ -18,7 +17,7 @@ public class Main {
 
       /*
        * Lisäystestit.
-       *
+       *    
        */
 
         // Testi 19.

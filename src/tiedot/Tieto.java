@@ -1,4 +1,4 @@
-package Tiedot;
+package tiedot;
 
 import oopeSOS.Komentotulkki;
 

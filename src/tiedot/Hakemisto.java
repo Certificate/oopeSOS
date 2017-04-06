@@ -1,8 +1,8 @@
-package Tiedot;
+package tiedot;
 
 import apulaiset.Komennettava;
 import fi.uta.csjola.oope.lista.LinkitettyLista;
-import oopeSOS.*;
+import omalista.OmaLista;
 
 /**
  *  Hakemisto-alaluokka

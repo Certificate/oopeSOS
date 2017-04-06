@@ -1,6 +1,5 @@
 package oopeSOS;
 
-import Tiedot.Hakemisto;
 import apulaiset.In;
 
 /**

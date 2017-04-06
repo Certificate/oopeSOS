@@ -1,6 +1,5 @@
-package Tiedot;
+package tiedot;
 
-import oopeSOS.Komentotulkki;
 /**
  *  Tiedostoa mallintava aliluokka Tiedosta.
  */
