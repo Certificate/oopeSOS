@@ -56,7 +56,6 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
             for (int i = 0; i < koko(); i++) {
                 if (poistettava.equals(alkio(i))) {
                     return poista(i);
-
                 }
             }
         }
