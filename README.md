@@ -1,5 +1,4 @@
-
-Käytän tätä lähinnä synkronointia varten, mutta oppiipahan samalla gitin käyttöä!
+ # Käytän tätä lähinnä synkronointia varten, mutta oppiipahan samalla gitin käyttöä!
 
 Älä kopioi vaan opi itse.
 
