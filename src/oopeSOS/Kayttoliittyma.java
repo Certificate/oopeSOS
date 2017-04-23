@@ -24,9 +24,6 @@ public class Kayttoliittyma {
                 if (tulkki.tulkkaa(vastaus) == 0){
                     run = 0;
                 }
-                else{
-                    System.out.println("Ei ainakaan exit");
-                }
             }
             else if (!tulkki.tarkistus(vastaus)){
                 System.out.println("Error!");

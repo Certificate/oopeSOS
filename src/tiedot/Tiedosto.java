@@ -3,6 +3,7 @@ package tiedot;
 /**
  *  Tiedostoa mallintava aliluokka Tiedosta.
  */
+
 public class Tiedosto extends Tieto {
 
     // Koko tavuina

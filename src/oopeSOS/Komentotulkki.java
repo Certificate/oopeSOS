@@ -44,10 +44,20 @@ public class Komentotulkki {
         if (komento.equals(EXIT)){
             return 0;
         }
-        else{
-            System.out.println("Väärä komento! Kokeile uudestaan.");
+        else if (komento.equals(MAKEDIR)){
+            makeDir();
             return 1;
         }
+        else if (komento.equals(MAKEFIL)){
+            makeFil();
+            return 1;
+        }else if (komento.equals(CHANGEDIR)){
+            changeDir();
+            return 1;
+        }else{
+            System.out.print("mitävittua");
+        }
+        return 1;
     }
 
     public void asetaPolku(String str){
@@ -57,5 +67,16 @@ public class Komentotulkki {
     public void luePolku(){
         System.out.print(polku);
     }
+
+    public void makeDir() {
+        System.out.println("MAKEDIR ACTIVATED");
+    }
+    public void makeFil () {
+        System.out.println("makeFil ACTIVATED");
+    }
+    public void changeDir () {
+        System.out.println("changeDir ACTIVATED");
+    }
+
 }
 
