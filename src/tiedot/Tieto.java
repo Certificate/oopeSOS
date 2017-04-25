@@ -1,6 +1,7 @@
 package tiedot;
 
 import oopeSOS.Komentotulkki;
+import oopeSOS.Tarkistaja;
 
 /**
  *  TIEDOT- YLILUOKKA
@@ -8,7 +9,7 @@ import oopeSOS.Komentotulkki;
 
 public abstract class Tieto implements Comparable<Tieto>{
 
-    Komentotulkki tulkkaus = new Komentotulkki();
+    Tarkistaja tarkistaja = new Tarkistaja();
     private StringBuilder nimi = new StringBuilder();
 
     public Tieto(StringBuilder str) {
@@ -20,7 +21,7 @@ public abstract class Tieto implements Comparable<Tieto>{
     }
 
     public void asetaString(StringBuilder str) throws IllegalArgumentException {
-        if (tulkkaus.tarkistus(str.toString()) == true) {
+        if (tarkistaja.tarkistus(str.toString()) == true) {
             this.nimi = (str);
         } else {
             throw new IllegalArgumentException();

@@ -1,6 +1,7 @@
 package oopeSOS;
 
 import apulaiset.In;
+import tiedot.Hakemisto;
 
 /**
  *  Tämän työmaan teki Valtteri Vuori
@@ -11,21 +12,22 @@ import apulaiset.In;
 public class Kayttoliittyma {
 
     // dir = directory :)
-    private Komentotulkki dir = new Komentotulkki();
-
+    private Hakemisto nykyHakemisto;
     private Komentotulkki tulkki = new Komentotulkki();
+    private Tarkistaja tarkistaja = new Tarkistaja();
 
     public void run(){
         int run = 1;
         while(run == 1) {
-            dir.luePolku();
+            tulkki.luoRoot();
+            tulkki.luePolku();
             String vastaus = In.readString();
-            if (tulkki.tarkistus(vastaus)) {
+            if (tarkistaja.tarkistus(vastaus)) {
                 if (tulkki.tulkkaa(vastaus) == 0){
                     run = 0;
                 }
             }
-            else if (!tulkki.tarkistus(vastaus)){
+            else if (!tarkistaja.tarkistus(vastaus)){
                 System.out.println("Error!");
             }
         }

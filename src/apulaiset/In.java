@@ -18,9 +18,11 @@ package apulaiset;
  *
  */
 
+import oopeSOS.Kayttoliittyma;
+
 import java.util.*;  // Scanner-luokka täällä.
 
-final public class In {
+final public class In extends Kayttoliittyma {
    /*
     * Vakiomuotoiset luokka-attribuutit.
     *

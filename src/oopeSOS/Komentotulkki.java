@@ -1,5 +1,8 @@
 package oopeSOS;
 
+import omalista.OmaLista;
+import tiedot.*;
+
 /**
  *  Komentoja tulkkaava tulkki :) .
  */
@@ -18,26 +21,13 @@ public class Komentotulkki {
     private static final String MOVE = "mv";
     private static final String EXIT = "exit";
 
+    private Hakemisto nykyHakemisto;
+
     private String polku = "/>";
 
-    // Tarkistetaan ovatko annetun syötteen merkit ok
-    public boolean tarkistus (String str){
-        boolean ok = false;
-        for (int i = 0; i < str.length(); i++){
-            char help = str.charAt(i);
-            if ((help >= 'a' && help <= 'z')
-                    || (help >= '0' && help <= '9')
-                    || (help >= 'A' && help <= 'Z')
-                    || (help == '.')
-                    || (help == ' ')
-                    || (help == '_')){
-                ok = true;
-            }
-            else{
-                ok = false;
-            }
-        }
-        return ok;
+    public void luoRoot(){
+        Hakemisto root = new Hakemisto(new StringBuilder("root"), null);
+        nykyHakemisto = root;
     }
 
     public int tulkkaa(String komento){
@@ -45,16 +35,32 @@ public class Komentotulkki {
             return 0;
         }
         else if (komento.equals(MAKEDIR)){
-            makeDir();
+            makeDir(komento);
+            return 1;
+        }
+        else if (komento.equals(LIST)){
+            System.out.println(nykyHakemisto.sisalto());
+            return 1;
+        }
+        else if (komento.equals(FIND)){
+            return 1;
+        }
+        else if (komento.equals(REMOVE)){
+            return 1;
+        }
+        else if (komento.equals(COPY)){
+            return 1;
+        }
+        else if (komento.equals(MOVE)){
             return 1;
         }
         else if (komento.equals(MAKEFIL)){
-            makeFil();
             return 1;
-        }else if (komento.equals(CHANGEDIR)){
-            changeDir();
+        }
+        else if (komento.equals(CHANGEDIR)){
             return 1;
-        }else{
+        }
+        else{
             System.out.print("mitävittua");
         }
         return 1;
@@ -68,8 +74,10 @@ public class Komentotulkki {
         System.out.print(polku);
     }
 
-    public void makeDir() {
+    public void makeDir(String nimi) {
         System.out.println("MAKEDIR ACTIVATED");
+        nykyHakemisto.lisaa(new Hakemisto(new StringBuilder(nimi), null));
+
     }
     public void makeFil () {
         System.out.println("makeFil ACTIVATED");
