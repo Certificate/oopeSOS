@@ -17,9 +17,9 @@ public class Kayttoliittyma {
     private Tarkistaja tarkistaja = new Tarkistaja();
 
     public void run(){
+        tulkki.luoRoot();
         int run = 1;
         while(run == 1) {
-            tulkki.luoRoot();
             tulkki.luePolku();
             String vastaus = In.readString();
             if (tarkistaja.tarkistus(vastaus)) {
