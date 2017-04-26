@@ -24,6 +24,10 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
         this.ylihakemisto = yli;
     }
 
+    public Hakemisto haeYli(){
+        return this.ylihakemisto;
+    }
+
     public LinkitettyLista sisalto(){
         return lista;
     }

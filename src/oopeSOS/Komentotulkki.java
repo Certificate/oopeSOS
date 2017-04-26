@@ -24,7 +24,7 @@ public class Komentotulkki {
 
     private Hakemisto nykyHakemisto;
 
-    private String polku = "/>";
+    private StringBuilder polku = new StringBuilder("/>");
 
     public void luoRoot(){
         nykyHakemisto = new Hakemisto(new StringBuilder("root"), null);
@@ -40,12 +40,15 @@ public class Komentotulkki {
 
         String[] parts = input.split(" ");
         String komento = parts[0];
-        String para1 = "ebin";
+        String para1 = "";
+        if (laskuri >= 1){
+            para1 = parts[1];
+            //System.out.println("Part 1: "+para1);
+        }
         String para2 = "";
-        System.out.println("Part 1: "+para1);
         if (laskuri >= 2){
             para2 = parts[2];
-            System.out.println("Part 2: "+para2);
+            //System.out.println("Part 2: "+para2);
         }
 
         if (komento.equals(EXIT)){
@@ -79,6 +82,7 @@ public class Komentotulkki {
             return 1;
         }
         else if (komento.equals(CHANGEDIR)){
+            changeDir(para1);
             return 1;
         }
         else{
@@ -87,33 +91,34 @@ public class Komentotulkki {
         return 1;
     }
 
-    public void asetaPolku(String str){
-        this.polku = str;
-    }
 
     public void luePolku(){
         System.out.print(polku);
     }
 
     public void makeDir(String nimi) {
-        System.out.println("MAKEDIR ACTIVATED");
         nykyHakemisto.lisaa(new Hakemisto(new StringBuilder(nimi), nykyHakemisto));
 
     }
     public void makeFil (String nimi, int koko) {
-        System.out.println("makeFil ACTIVATED");
         nykyHakemisto.lisaa(new Tiedosto(new StringBuilder(nimi), koko));
     }
-    public void changeDir () {
-        System.out.println("changeDir ACTIVATED");
+    public void changeDir (String uusiHakemisto) {
+        if (nykyHakemisto.hae(uusiHakemisto) != null) {
+            nykyHakemisto = (Hakemisto) nykyHakemisto.hae(uusiHakemisto);
+            polku.insert(0, uusiHakemisto);
+            polku.insert(0, '/');
+        }
+        else
+            System.out.println("Error!");
+
+
     }
 
     private static void tulostaSisalto(LinkitettyLista lista) {
         if (lista != null) {
             for (int i = 0; i < lista.koko(); i++) {
                 System.out.println(lista.alkio(i));
-                //if (i < lista.koko() - 1)
-                    //System.out.print(", ");
             }
         }
     }
