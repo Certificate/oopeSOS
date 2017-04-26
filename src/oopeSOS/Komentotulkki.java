@@ -104,7 +104,11 @@ public class Komentotulkki {
         nykyHakemisto.lisaa(new Tiedosto(new StringBuilder(nimi), koko));
     }
     public void changeDir (String uusiHakemisto) {
-        if (nykyHakemisto.hae(uusiHakemisto) != null) {
+        if (uusiHakemisto.equals("..")) {
+            nykyHakemisto = nykyHakemisto.haeYli();
+
+        }
+        else if (nykyHakemisto.hae(uusiHakemisto) != null) {
             nykyHakemisto = (Hakemisto) nykyHakemisto.hae(uusiHakemisto);
             polku.insert(0, uusiHakemisto);
             polku.insert(0, '/');
