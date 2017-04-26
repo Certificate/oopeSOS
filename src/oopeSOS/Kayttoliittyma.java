@@ -21,6 +21,7 @@ public class Kayttoliittyma {
         int run = 1;
         while(run == 1) {
             tulkki.luePolku();
+            System.out.print("/>");
             String vastaus = In.readString();
             if (tarkistaja.tarkistus(vastaus)) {
                 if (tulkki.tulkkaa(vastaus) == 0){

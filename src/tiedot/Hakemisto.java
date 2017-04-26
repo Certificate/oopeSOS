@@ -77,6 +77,9 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
     public String toString() {
         return super.lueString() + "/ " +lista.koko();
     }
+    public String toSimpleName() {
+        return super.lueString();
+    }
 
 
 

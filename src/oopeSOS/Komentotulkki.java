@@ -24,7 +24,7 @@ public class Komentotulkki {
 
     private Hakemisto nykyHakemisto;
 
-    private StringBuilder polku = new StringBuilder("/>");
+    private StringBuilder polku = new StringBuilder("");
 
     public void luoRoot(){
         nykyHakemisto = new Hakemisto(new StringBuilder("root"), null);
@@ -37,18 +37,22 @@ public class Komentotulkki {
             if (input.charAt(i) == ' ')
                 laskuri++;
         }
-
-        String[] parts = input.split(" ");
-        String komento = parts[0];
+        String komento = "";
         String para1 = "";
-        if (laskuri >= 1){
-            para1 = parts[1];
-            //System.out.println("Part 1: "+para1);
-        }
         String para2 = "";
-        if (laskuri >= 2){
-            para2 = parts[2];
-            //System.out.println("Part 2: "+para2);
+        if (laskuri > 0) {
+            String[] parts = input.split(" ");
+            komento = parts[0];
+
+            if (laskuri >= 1) {
+                para1 = parts[1];
+                //System.out.println("Part 1: "+para1);
+            }
+
+            if (laskuri >= 2) {
+                para2 = parts[2];
+                //System.out.println("Part 2: "+para2);
+            }
         }
 
         if (komento.equals(EXIT)){
@@ -82,11 +86,16 @@ public class Komentotulkki {
             return 1;
         }
         else if (komento.equals(CHANGEDIR)){
-            changeDir(para1);
+            if (nykyHakemisto.toSimpleName().equals("root") && para1.equals("..")){
+                System.out.println("Olet jo juurihakemistossa, urpo!");
+            }
+            else{
+                changeDir(para1);
+            }
             return 1;
         }
         else{
-            System.out.print("mitävittua");
+            System.out.println("Ei tuettu komento");
         }
         return 1;
     }
@@ -105,13 +114,13 @@ public class Komentotulkki {
     }
     public void changeDir (String uusiHakemisto) {
         if (uusiHakemisto.equals("..")) {
+            polku.delete(polku.length() - nykyHakemisto.toSimpleName().length() - 1, polku.length());
             nykyHakemisto = nykyHakemisto.haeYli();
-
         }
         else if (nykyHakemisto.hae(uusiHakemisto) != null) {
             nykyHakemisto = (Hakemisto) nykyHakemisto.hae(uusiHakemisto);
-            polku.insert(0, uusiHakemisto);
-            polku.insert(0, '/');
+            polku.append("/"+uusiHakemisto);
+            //polku.insert(0, '/');
         }
         else
             System.out.println("Error!");
