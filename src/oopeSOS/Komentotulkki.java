@@ -21,13 +21,17 @@ public class Komentotulkki {
     private static final String COPY = "cp";
     private static final String MOVE = "mv";
     private static final String EXIT = "exit";
+    
+    private static final String VIRHE = "Error!";
 
     private Hakemisto nykyHakemisto;
+    private Hakemisto juuriHakemisto;
 
     private StringBuilder polku = new StringBuilder("");
 
     public void luoRoot(){
         nykyHakemisto = new Hakemisto(new StringBuilder("root"), null);
+        juuriHakemisto = nykyHakemisto;
     }
 
     public int tulkkaa(String input){
@@ -37,97 +41,85 @@ public class Komentotulkki {
             if (input.charAt(i) == ' ')
                 laskuri++;
         }
-        String komento = "";
-        String para1 = "";
-        String para2 = "";
-        if (laskuri > 0) {
-            String[] parts = input.split(" ");
-            komento = parts[0];
 
-            if (laskuri >= 1) {
-                para1 = parts[1];
-                //System.out.println("Part 1: "+para1);
+        if (input.length() == 3 && laskuri > 0){
+            System.out.println(VIRHE);
+        }
+        else {
+
+            String[] para = input.split(" ");
+            String komento = para[0];
+
+            if (komento.equals(EXIT)) {
+                return 0;
+            } else if (komento.equals(MAKEDIR)) {
+                if (para.length >= 2)
+                    nykyHakemisto.lisaa(new Hakemisto(new StringBuilder(para[1]), nykyHakemisto));
+                return 1;
+            } else if (komento.equals(LIST)) {
+                tulostaSisalto(nykyHakemisto.sisalto());
+                return 1;
+            } else if (komento.equals(FIND)) {
+                if (para.length > 1){
+                    System.out.println("FindMe Vittu");
+                    System.out.println(nykyHakemisto.hae(para[1]));
+                }
+                return 1;
+            } else if (komento.equals(REMOVE)) {
+                if (para.length > 1){
+                    nykyHakemisto.poista(para[1]);
+                }
+                return 1;
+            } else if (komento.equals(COPY)) {
+                return 1;
+            } else if (komento.equals(MOVE)) {
+                return 1;
             }
 
-            if (laskuri >= 2) {
-                para2 = parts[2];
-                //System.out.println("Part 2: "+para2);
+            else if (komento.equals(MAKEFIL)) {
+                if (para.length >= 3 && para[2] != null && !para[2].isEmpty()) {
+                    int koko = 0;
+                    if (laskuri >= 2)
+                        koko = Integer.parseInt(para[2]);
+                    nykyHakemisto.lisaa(new Tiedosto(new StringBuilder(para[1]), koko));
+                    return 1;
+                }
+                else
+                    System.out.println(VIRHE);
+                return 1;
             }
-        }
 
-        if (komento.equals(EXIT)){
-            return 0;
-        }
-        else if (komento.equals(MAKEDIR)){
-            makeDir(para1);
-            return 1;
-        }
-        else if (komento.equals(LIST)){
-            tulostaSisalto(nykyHakemisto.sisalto());
-            return 1;
-        }
-        else if (komento.equals(FIND)){
-            return 1;
-        }
-        else if (komento.equals(REMOVE)){
-            return 1;
-        }
-        else if (komento.equals(COPY)){
-            return 1;
-        }
-        else if (komento.equals(MOVE)){
-            return 1;
-        }
-        else if (komento.equals(MAKEFIL)){
-            int koko = 0;
-            if(laskuri >= 2)
-                koko = Integer.parseInt(para2);
-            makeFil(para1, koko);
-            return 1;
-        }
-        else if (komento.equals(CHANGEDIR)){
-            if (nykyHakemisto.toSimpleName().equals("root") && para1.equals("..")){
-                System.out.println("Olet jo juurihakemistossa, urpo!");
+            else if (komento.equals(CHANGEDIR)) {
+                if (para.length == 1) {
+                    nykyHakemisto = juuriHakemisto;
+                    polku.delete(0, polku.length());
+                } else {
+                    if (nykyHakemisto.toSimpleName().equals("root") && para[1].equals("..")) {
+                        System.out.println(VIRHE);
+                    } else {
+                        if (para[1].equals("..")) {
+                            polku.delete(polku.length() - nykyHakemisto.toSimpleName().length() - 1, polku.length());
+                            nykyHakemisto = nykyHakemisto.haeYli();
+                        } else if (nykyHakemisto.hae(para[1]) != null) {
+                            nykyHakemisto = (Hakemisto) nykyHakemisto.hae(para[1]);
+                            polku.append("/" + para[1]);
+                        } else
+                            System.out.println(VIRHE);
+                    }
+                }
             }
             else{
-                changeDir(para1);
+                System.out.println("Ei tuettu komento");
             }
             return 1;
-        }
-        else{
-            System.out.println("Ei tuettu komento");
         }
         return 1;
     }
-
-
+    
     public void luePolku(){
         System.out.print(polku);
     }
-
-    public void makeDir(String nimi) {
-        nykyHakemisto.lisaa(new Hakemisto(new StringBuilder(nimi), nykyHakemisto));
-
-    }
-    public void makeFil (String nimi, int koko) {
-        nykyHakemisto.lisaa(new Tiedosto(new StringBuilder(nimi), koko));
-    }
-    public void changeDir (String uusiHakemisto) {
-        if (uusiHakemisto.equals("..")) {
-            polku.delete(polku.length() - nykyHakemisto.toSimpleName().length() - 1, polku.length());
-            nykyHakemisto = nykyHakemisto.haeYli();
-        }
-        else if (nykyHakemisto.hae(uusiHakemisto) != null) {
-            nykyHakemisto = (Hakemisto) nykyHakemisto.hae(uusiHakemisto);
-            polku.append("/"+uusiHakemisto);
-            //polku.insert(0, '/');
-        }
-        else
-            System.out.println("Error!");
-
-
-    }
-
+    
     private static void tulostaSisalto(LinkitettyLista lista) {
         if (lista != null) {
             for (int i = 0; i < lista.koko(); i++) {
