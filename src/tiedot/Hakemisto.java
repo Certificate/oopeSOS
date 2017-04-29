@@ -56,6 +56,7 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
             return false;
     }
 
+
     public Tieto poista(String nimi){
         if(nimi != null) {
             Tiedosto apuTiedosto = new Tiedosto(new StringBuilder(nimi), 10);

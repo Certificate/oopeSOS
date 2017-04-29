@@ -21,7 +21,6 @@ public abstract class Tieto implements Comparable<Tieto>{
 
     public void asetaString(StringBuilder str) throws IllegalArgumentException {
         if (tarkistaja.tarkistus(str.toString()) == true) {
-            System.out.println("Tieto-luokassa oleva asetaString metodin parametri: "+str);
             this.nimi = (str);
         } else {
             throw new IllegalArgumentException();
