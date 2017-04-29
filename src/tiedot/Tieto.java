@@ -1,6 +1,5 @@
 package tiedot;
 
-import oopeSOS.Komentotulkki;
 import oopeSOS.Tarkistaja;
 
 /**
@@ -22,7 +21,17 @@ public abstract class Tieto implements Comparable<Tieto>{
 
     public void asetaString(StringBuilder str) throws IllegalArgumentException {
         if (tarkistaja.tarkistus(str.toString()) == true) {
+            System.out.println("Tieto-luokassa oleva asetaString metodin parametri: "+str);
             this.nimi = (str);
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void muutaNimi(String str){
+        if (tarkistaja.tarkistus(str.toString()) == true) {
+            this.nimi.delete(0, this.nimi.length());
+            this.nimi.append(str);
         } else {
             throw new IllegalArgumentException();
         }

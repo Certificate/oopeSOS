@@ -1,17 +1,12 @@
 package oopeSOS;
-
-import omalista.OmaLista;
 import tiedot.*;
 import fi.uta.csjola.oope.lista.*;
-
 /**
  *  Komentoja tulkkaava tulkki :) .
  */
 public class Komentotulkki {
-
     // Alla kaikki harjoitustyössä käytettävät komennot
     // katso dokumentaatio
-
     private static final String MAKEDIR = "md";
     private static final String MAKEFIL = "mf";
     private static final String CHANGEDIR = "cd";
@@ -19,21 +14,23 @@ public class Komentotulkki {
     private static final String FIND = "find";
     private static final String REMOVE = "rm";
     private static final String COPY = "cp";
-    private static final String MOVE = "mv";
+    private static final String RENAME = "mv";
     private static final String EXIT = "exit";
-    
+    // Vakioitu virhe.
     private static final String VIRHE = "Error!";
-
     private Hakemisto nykyHakemisto;
     private Hakemisto juuriHakemisto;
-
+    // Käyttöliittymässä näkyvä polku.
     private StringBuilder polku = new StringBuilder("");
-
+    // Luodaan root (= juurihakemisto). Tämä metodi ajetaan kerran.
     public void luoRoot(){
         nykyHakemisto = new Hakemisto(new StringBuilder("root"), null);
         juuriHakemisto = nykyHakemisto;
     }
 
+    // Varsinainen työläinen luokassa. Input tulee käyttöliittymästä ja tämä
+    // poika tulkkaa sen. Riippuen annetusta syötteestä metodi tekee eri
+    // asioita, kuten tiedoston luontia tai kansion vaihtoa.
     public int tulkkaa(String input){
 
         int laskuri = 0;
@@ -43,10 +40,9 @@ public class Komentotulkki {
         }
 
         if (input.length() == 3 && laskuri > 0){
-            System.out.println(VIRHE);
+            //System.out.println(VIRHE);
         }
         else {
-
             String[] para = input.split(" ");
             String komento = para[0];
 
@@ -72,7 +68,9 @@ public class Komentotulkki {
                 return 1;
             } else if (komento.equals(COPY)) {
                 return 1;
-            } else if (komento.equals(MOVE)) {
+            } else if (komento.equals(RENAME)) {
+                if (para.length >= 3)
+                nykyHakemisto.hae(para[1]).muutaNimi(para[2]);
                 return 1;
             }
 
@@ -113,9 +111,9 @@ public class Komentotulkki {
             }
             return 1;
         }
+        System.out.println(VIRHE);
         return 1;
     }
-    
     public void luePolku(){
         System.out.print(polku);
     }

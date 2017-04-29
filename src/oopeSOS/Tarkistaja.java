@@ -3,6 +3,7 @@ package oopeSOS;
 /**
  * Created by Valtteri on 25/04/2017.
  */
+
 public class Tarkistaja {
     public boolean tarkistus (String str){
         boolean ok = false;
@@ -17,7 +18,7 @@ public class Tarkistaja {
                 ok = true;
             }
             else{
-                ok = false;
+                return false;
             }
         }
         return ok;
