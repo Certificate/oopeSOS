@@ -1,6 +1,9 @@
 package oopeSOS;
 import tiedot.*;
 import fi.uta.csjola.oope.lista.*;
+
+import javax.rmi.CORBA.Tie;
+
 /**
  *  Komentoja tulkkaava tulkki :) .
  */
@@ -67,6 +70,13 @@ public class Komentotulkki {
                 }
                 return 1;
             } else if (komento.equals(COPY)) {
+                if (para.length >= 3) {
+                    Tiedosto apuTiedosto = new Tiedosto((Tiedosto)nykyHakemisto.hae(para[1]));
+                    apuTiedosto.asetaString(new StringBuilder(para[2]));
+                    nykyHakemisto.lisaa(new Tiedosto(apuTiedosto));
+                }
+                else
+                    System.out.println(VIRHE);
                 return 1;
             } else if (komento.equals(RENAME)) {
                 if (para.length >= 3)
