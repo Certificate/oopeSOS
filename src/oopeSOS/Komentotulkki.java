@@ -60,7 +60,7 @@ public class Komentotulkki {
                 return 1;
             } else if (komento.equals(FIND)) {
                 if (para.length > 1){
-                    System.out.println("FindMe Vittu");
+                    System.out.println("FindM");
                     System.out.println(nykyHakemisto.hae(para[1]));
                 }
                 return 1;
