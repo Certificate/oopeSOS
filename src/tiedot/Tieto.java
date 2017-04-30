@@ -49,7 +49,9 @@ public abstract class Tieto implements Comparable<Tieto>{
     }
 
     public Tieto(Tieto alkuperainen) {
-        asetaString(alkuperainen.lueStringBuilder());
+        if(alkuperainen instanceof Tieto){
+            asetaString(alkuperainen.lueStringBuilder());
+        }
     }
 
 

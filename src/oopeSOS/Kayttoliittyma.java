@@ -11,7 +11,6 @@ import tiedot.Hakemisto;
 
 public class Kayttoliittyma {
 
-    // dir = directory :)
     private Hakemisto nykyHakemisto;
     private Komentotulkki tulkki = new Komentotulkki();
     private Tarkistaja tarkistaja = new Tarkistaja();
