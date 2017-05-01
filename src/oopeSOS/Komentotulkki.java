@@ -52,17 +52,16 @@ public class Komentotulkki {
             if (komento.equals(EXIT)) {
                 return 0;
             } else if (komento.equals(MAKEDIR)) {
-                if (para.length >= 2)
+                if (para.length >= 2 && nykyHakemisto.hae(para[1]) == null)
                     nykyHakemisto.lisaa(new Hakemisto(new StringBuilder(para[1]), nykyHakemisto));
+                else
+                    System.out.println(VIRHE);
                 return 1;
             } else if (komento.equals(LIST)) {
                 tulostaSisalto(nykyHakemisto.sisalto());
                 return 1;
             } else if (komento.equals(FIND)) {
-                if (para.length > 1){
-                    System.out.println("FindM");
-                    System.out.println(nykyHakemisto.hae(para[1]));
-                }
+                puunTulostus(nykyHakemisto);
                 return 1;
             } else if (komento.equals(REMOVE)) {
                 if (para.length > 1){
@@ -85,7 +84,8 @@ public class Komentotulkki {
             }
 
             else if (komento.equals(MAKEFIL)) {
-                if (para.length >= 3 && para[2] != null && !para[2].isEmpty()) {
+                if (para.length >= 3 && nykyHakemisto.hae(para[1]) == null ) {
+                    //  && para[2] != null && !para[2].isEmpty()
                     int koko = 0;
                     if (laskuri >= 2)
                         koko = Integer.parseInt(para[2]);
@@ -133,6 +133,18 @@ public class Komentotulkki {
             for (int i = 0; i < lista.koko(); i++) {
                 System.out.println(lista.alkio(i));
             }
+        }
+    }
+
+    public void puunTulostus(Hakemisto hakemisto){
+        int i = 0;
+        while (i < hakemisto.sisalto().koko()) {
+            // Tulostetaan tiedon merkkijonoesitys.
+            System.out.println(hakemisto.sisalto().alkio(i));
+            // Tulostetaan alihakemiston sisältö.
+            if (hakemisto.sisalto().alkio(i) instanceof Hakemisto)
+                puunTulostus((Hakemisto)hakemisto.sisalto().alkio(i));
+            i++;
         }
     }
 
