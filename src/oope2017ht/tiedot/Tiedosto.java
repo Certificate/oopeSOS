@@ -6,14 +6,21 @@ package oope2017ht.tiedot;
 
 public class Tiedosto extends Tieto {
 
-    // Koko tavuina
+    // Attribuutti
     private int koko;
 
+    // Rakentajat
     public Tiedosto( StringBuilder str, int i){
         super(str);
         asetaKoko(i);
     }
 
+    public Tiedosto(Tiedosto alkuperainen){
+        super(alkuperainen);
+        asetaKoko(alkuperainen.lueKoko());
+    }
+
+    // Setterit
     public void asetaKoko(int i) throws IllegalArgumentException{
         if (i > 0) {
             this.koko = i;
@@ -23,16 +30,20 @@ public class Tiedosto extends Tieto {
         }
     }
 
+    // Getterit
+
     public int lueKoko(){
         return this.koko;
     }
 
+    // Kaikki muu
     public String toString() {
         return super.toString() + " " + koko;
     }
 
-    public Tiedosto(Tiedosto alkuperainen){
-        super(alkuperainen);
-        asetaKoko(alkuperainen.lueKoko());
+    public String toSimpleName() {
+        return super.lueString();
     }
+
+
 }

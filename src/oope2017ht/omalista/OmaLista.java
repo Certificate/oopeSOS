@@ -5,10 +5,12 @@ import fi.uta.csjola.oope.lista.*;
 
 /**
  *   LinkitetystäListasta johdettu OmaLista luokka
+ *   johon on implementoitu Ooperoiva-rajapinnassa ohjeistetut metodit.
  */
 
 public class OmaLista extends LinkitettyLista implements Ooperoiva{
 
+    // Haetaan objektia listasta.
     public Object hae(Object get) {
         if(get != null) {
             for (int i = 0; i < koko(); i++){
@@ -22,7 +24,7 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
             return null;
     }
 
-
+    // Tiedoston lisäys listaan
     public boolean lisaa(Object uusi) {
         if (uusi != null) {
             int i = 0;
@@ -51,6 +53,7 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
         }
     }
 
+    // Tiedoston poisto listasta
     public Object poista(Object poistettava) {
         if (poistettava != null) {
             for (int i = 0; i < koko(); i++) {

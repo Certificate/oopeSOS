@@ -55,7 +55,17 @@ public class Komentotulkki {
                     System.out.println(VIRHE);
                 return 1;
             } else if (komento.equals(LIST)) {
-                tulostaSisalto(nykyHakemisto.sisalto());
+                if (para.length == 1 && nykyHakemisto != null)
+                    tulostaSisalto(nykyHakemisto.sisalto());
+                else if (para.length >= 2 && para[1] != null && nykyHakemisto != null){
+                    for (int i = 0; i < nykyHakemisto.sisalto().koko(); i++) {
+                        if (nykyHakemisto.sisalto().alkio(i).equals(nykyHakemisto.hae(para[1]))){
+                            System.out.println(nykyHakemisto.sisalto().alkio(i));
+                            return 1;
+                        }
+                    }
+                }
+
                 return 1;
             } else if (komento.equals(FIND)) {
                 puunTulostus(nykyHakemisto);

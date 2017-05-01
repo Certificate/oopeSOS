@@ -1,7 +1,8 @@
 package oope2017ht;
 
 /**
- * Created by Valtteri on 25/04/2017.
+ *  Tämä luokka toimii syötteen tarkistuksen parissa. Ei muuta.
+ *  Aika itsestäänselvää eikös?
  */
 
 public class Tarkistaja {
