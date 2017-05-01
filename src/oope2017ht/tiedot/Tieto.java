@@ -1,6 +1,6 @@
-package tiedot;
+package oope2017ht.tiedot;
 
-import oopeSOS.Tarkistaja;
+import oope2017ht.Tarkistaja;
 
 /**
  *  TIEDOT- YLILUOKKA

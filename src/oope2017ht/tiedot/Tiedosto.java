@@ -1,4 +1,4 @@
-package tiedot;
+package oope2017ht.tiedot;
 
 /**
  *  Tiedostoa mallintava aliluokka Tiedosta.

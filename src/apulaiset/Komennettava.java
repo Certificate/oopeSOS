@@ -23,7 +23,7 @@ public interface Komennettava<T> {
      */   
    abstract public LinkitettyLista sisalto();
 
-   /** Hakee hakemistosta tiedostoa tai alihakemistoa. Hyödyntää omalista.OmaLista-luokan
+   /** Hakee hakemistosta tiedostoa tai alihakemistoa. Hyödyntää oope2017ht.omalista.OmaLista-luokan
      * hae-operaatiota. Huomaa, että nimeä käyttäen haun avuksi voidaan luoda
      * väliaikainen tiedosto tai hakemisto.
      *
@@ -32,7 +32,7 @@ public interface Komennettava<T> {
      */
    abstract public T hae(String nimi);
 
-   /** Lisää hakemistoon tiedoston tai alihakemiston. Hyödyntää omalista.OmaLista-luokan
+   /** Lisää hakemistoon tiedoston tai alihakemiston. Hyödyntää oope2017ht.omalista.OmaLista-luokan
      * lisaa-operaatiota.
      *
      * @param lisattava viite lisättävään tietoon.
@@ -41,7 +41,7 @@ public interface Komennettava<T> {
      */
    abstract public boolean lisaa(T lisattava);
 
-   /** Poistaa hakemistosta tiedoston tai alihakemiston. Hyödyntää omalista.OmaLista-luokan
+   /** Poistaa hakemistosta tiedoston tai alihakemiston. Hyödyntää oope2017ht.omalista.OmaLista-luokan
      * poista-operaatiota. Huomaa, että nimeä käyttäen poiston avuksi voidaan luoda
      * väliaikainen tiedosto tai hakemisto.
      *

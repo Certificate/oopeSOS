@@ -1,7 +1,7 @@
-package oopeSOS;
+package oope2017ht;
 
 import apulaiset.In;
-import tiedot.Hakemisto;
+
 
 /**
  *  Tämän työmaan teki Valtteri Vuori
@@ -11,7 +11,6 @@ import tiedot.Hakemisto;
 
 public class Kayttoliittyma {
 
-    private Hakemisto nykyHakemisto;
     private Komentotulkki tulkki = new Komentotulkki();
     private Tarkistaja tarkistaja = new Tarkistaja();
 

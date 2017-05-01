@@ -1,8 +1,8 @@
-package tiedot;
+package oope2017ht.tiedot;
 
 import apulaiset.Komennettava;
 import fi.uta.csjola.oope.lista.LinkitettyLista;
-import omalista.OmaLista;
+import oope2017ht.omalista.OmaLista;
 
 /**
  *  Hakemisto-alaluokka

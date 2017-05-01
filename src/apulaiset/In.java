@@ -18,7 +18,7 @@ package apulaiset;
  *
  */
 
-import oopeSOS.Kayttoliittyma;
+import oope2017ht.Kayttoliittyma;
 
 import java.util.*;  // Scanner-luokka täällä.
 

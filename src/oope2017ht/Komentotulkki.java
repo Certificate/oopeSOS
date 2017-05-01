@@ -1,8 +1,6 @@
-package oopeSOS;
-import tiedot.*;
+package oope2017ht;
+import oope2017ht.tiedot.*;
 import fi.uta.csjola.oope.lista.*;
-
-import javax.rmi.CORBA.Tie;
 
 /**
  *  Komentoja tulkkaava tulkki :) .
@@ -41,7 +39,6 @@ public class Komentotulkki {
             if (input.charAt(i) == ' ')
                 laskuri++;
         }
-
         if (input.length() == 3 && laskuri > 0){
             //System.out.println(VIRHE);
         }
