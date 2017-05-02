@@ -12,7 +12,7 @@ public abstract class Tieto implements Comparable<Tieto>{
 
     // Attribuutit + tarkistajaluokan alustus
     Tarkistaja tarkistaja = new Tarkistaja();
-    private StringBuilder nimi = new StringBuilder();
+    StringBuilder nimi = new StringBuilder();
 
     // Rakentajat
     public Tieto(StringBuilder str) {

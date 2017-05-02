@@ -82,6 +82,25 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
         return super.lueString();
     }
 
+//    public void polku(){
+//        System.out.print("/");
+//        if (!this.nimi.toString().equals("root"))
+//            System.out.print(this.nimi.toString());
+//        if (this.ylihakemisto != null && this.ylihakemisto.toSimpleName() != "root")
+//            ylihakemisto.polku();
+//    }
+
+    public String annaPolku(Hakemisto tama) {
+        String polku;
+        if (!this.nimi.toString().equals("root"))
+            polku = "/"+this.nimi.toString();
+        else
+            polku = "/";
+        while (tama != null) {
+            tama = tama.haeYli();
+        }
+        return polku;
+    }
 
 
 
