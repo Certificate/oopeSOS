@@ -5,7 +5,7 @@ import fi.uta.csjola.oope.lista.*;
 /**
  *  Komentoja tulkkaava tulkki :) .
  */
-public class Komentotulkki {
+class Komentotulkki {
     // Alla kaikki harjoitustyössä käytettävät komennot
     // katso dokumentaatio
     private static final String MAKEDIR = "md";
@@ -29,57 +29,58 @@ public class Komentotulkki {
     private StringBuilder polkuKopio = new StringBuilder("");
 
     // Tarkastaja-olio
-    Tarkistaja tarkastaja = new Tarkistaja();
+    private Tarkistaja tarkastaja = new Tarkistaja();
 
     // Luodaan root (= juuri)hakemisto. Tämä metodi ajetaan vain kerran.
-    public void luoRoot(){
+    void luoRoot(){
         nykyHakemisto = new Hakemisto(new StringBuilder("root"), null);
         juuriHakemisto = nykyHakemisto;
     }
 
     // Luetaan polku. Käyttöliittymä kutsuu tätä.
-    public void luePolku(){
+    void luePolku(){
         System.out.print(polku);
     }
 
     // Varsinainen työläinen luokassa. Input tulee käyttöliittymästä ja tämä
     // poika tulkkaa sen. Riippuen annetusta syötteestä metodi tekee eri
     // asioita, kuten tiedoston luontia tai kansion vaihtoa.
-    public int tulkkaa(String input){
+    int tulkkaa(String input){
 
         String[] para = input.split(" ");
         String komento = para[0];
 
-        if (komento.equals(EXIT)) {
-            return 0;
-        }
-        else if (komento.equals(MAKEDIR)) {
-            makeDir(para);
-        }
-        else if (komento.equals(LIST)) {
-            listaa(para);
-        }
-        else if (komento.equals(FIND)) {
-            find(para);
-        }
-        else if (komento.equals(REMOVE)) {
-            poista(para);
-        }
-        else if (komento.equals(COPY)) {
-            kopioi(para);
-        }
-        else if (komento.equals(RENAME)) {
-            rename(para);
-        }
-        else if (komento.equals(MAKEFIL)) {
-            makeFile(para);
-        }
-        else if (komento.equals(CHANGEDIR)) {
-            changeDir(para);
-        }
-        // Jos oikeanlaista syötettä ei anneta, kertoo ohjelma siitä käyttäjlle varmasti.
-        else{
-            virhe();
+        switch (komento) {
+            case EXIT:
+                return 0;
+            case MAKEDIR:
+                makeDir(para);
+                break;
+            case LIST:
+                listaa(para);
+                break;
+            case FIND:
+                find(para);
+                break;
+            case REMOVE:
+                poista(para);
+                break;
+            case COPY:
+                kopioi(para);
+                break;
+            case RENAME:
+                rename(para);
+                break;
+            case MAKEFIL:
+                makeFile(para);
+                break;
+            case CHANGEDIR:
+                changeDir(para);
+                break;
+            // Jos oikeanlaista syötettä ei anneta, kertoo ohjelma siitä käyttäjlle varmasti.
+            default:
+                virhe();
+                break;
         }
         // Palauttaa ykkösen jos halutaan jatkaa käyttöliittymässä aloitettua silmukkaa.
         // Vain EXIT-komento palauttaa arvon 0, lopettaen ohjelman toiminnan.
@@ -88,7 +89,7 @@ public class Komentotulkki {
 
     // Listaa joko nykyisen hakemiston
     // tai yksittäisen tiedoston (parametrilla)
-    public void listaa(String[] para){
+    private void listaa(String[] para){
         if (para.length == 1 && nykyHakemisto != null)
             tulostaSisalto(nykyHakemisto.sisalto());
         else if (para.length == 2 && para[1] != null && nykyHakemisto.hae(para[1]) != null){
@@ -103,7 +104,7 @@ public class Komentotulkki {
     }
 
     // Listaa kaiken nykyisestä hakemistosta eteenpäin tiedostopuuna.
-    public void find(String[] para){
+    private void find(String[] para){
         if (para.length == 1 && nykyHakemisto.sisalto().koko() > 0)
             puunTulostus(nykyHakemisto);
         else
@@ -111,7 +112,7 @@ public class Komentotulkki {
     }
 
     // Tiedoston poisto hakemistosta.
-    public void poista(String[] para){
+    private void poista(String[] para){
         if (para.length == 2 && nykyHakemisto.hae(para[1]) != null){
             nykyHakemisto.poista(para[1]);
         }
@@ -120,7 +121,7 @@ public class Komentotulkki {
     }
 
     // Tiedoston kopiointi. Syväkopioi, eikä aseta vain viitettä.
-    public void kopioi(String[] para){
+    private void kopioi(String[] para){
         if (para.length == 3 &&
                 nykyHakemisto.hae(para[2]) == null &&
                 nykyHakemisto.hae(para[1]) != null &&
@@ -134,7 +135,7 @@ public class Komentotulkki {
     }
     // Tiedoston uudelleennimeäminen. Jos samanniminen tiedosto
     // on jo olemassa, heittää ohjelma erroria.
-    public void rename(String[] para){
+    private void rename(String[] para){
         if (para.length == 3 &&
                 nykyHakemisto.hae(para[2]) == null &&
                 nykyHakemisto.hae(para[1]) != null &&
@@ -152,10 +153,10 @@ public class Komentotulkki {
             virhe();
     }
 
-    public void makeFile(String[] para){
+    private void makeFile(String[] para){
         if (para.length == 3 &&
                 nykyHakemisto.hae(para[1]) == null &&
-                tarkastaja.numeroTarkistus(para[2]) == true &&
+                tarkastaja.numeroTarkistus(para[2]) &&
                 tarkastaja.pisteTarkistus(para[1])) {
             int koko = Integer.parseInt(para[2]);
             nykyHakemisto.lisaa(new Tiedosto(new StringBuilder(para[1]), koko));
@@ -165,7 +166,7 @@ public class Komentotulkki {
     }
 
     // Hakemiston luonti. Tarkistaa ettei samannimistä hakemistoa ole jo.
-    public void makeDir(String[] para){
+    private void makeDir(String[] para){
         if (para.length == 2 &&
                 nykyHakemisto.hae(para[1]) == null &&
                 para[1].charAt(0) != '.' &&
@@ -175,7 +176,7 @@ public class Komentotulkki {
             virhe();
     }
 
-    public void changeDir(String[] para){
+    private void changeDir(String[] para){
         // Jos splitattu syöte on vain määritellyn kokoinen (1), siirrytään takaisin
         // juurihakemistoon.
         if (para.length == 1) {
@@ -191,7 +192,7 @@ public class Komentotulkki {
                     nykyHakemisto = nykyHakemisto.haeYli();
                 } else if (nykyHakemisto.hae(para[1]) != null) {
                     nykyHakemisto = (Hakemisto) nykyHakemisto.hae(para[1]);
-                    polku.append("/" + para[1]);
+                    polku.append("/").append(para[1]);
                 } else
                     virhe();
             }
@@ -209,7 +210,7 @@ public class Komentotulkki {
 
     // Tulostaa tiedostopuun siitä hakemistosta
     // lähtien missä käyttäjä sillä hetkellä on.
-    public void puunTulostus(Hakemisto hakemisto){
+    private void puunTulostus(Hakemisto hakemisto){
         polkuKopio.append("/");
         int i = 0;
         while (i < hakemisto.sisalto().koko()) {
@@ -227,7 +228,7 @@ public class Komentotulkki {
         polkuKopio.delete(polkuKopio.length() - hakemisto.toSimpleName().length(), polkuKopio.length());
     }
     
-    public void virhe(){
+    private void virhe(){
         System.out.println(VIRHE);
     }
 }
