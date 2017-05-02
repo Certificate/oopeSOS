@@ -10,7 +10,7 @@ public class Tiedosto extends Tieto {
     private int koko;
 
     // Rakentajat
-    public Tiedosto( StringBuilder str, int i){
+    public Tiedosto( StringBuilder str, int i) throws IllegalArgumentException {
         super(str);
         asetaKoko(i);
     }

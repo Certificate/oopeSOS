@@ -26,6 +26,10 @@ public class Komentotulkki {
 
     // Käyttöliittymässä näkyvä polku. StringBuilder tekee elämästä helppoa!
     private StringBuilder polku = new StringBuilder("");
+    private StringBuilder polkuKopio = new StringBuilder("");
+
+    // Tarkastaja-olio
+    Tarkistaja tarkastaja = new Tarkistaja();
 
     // Luodaan root (= juuri)hakemisto. Tämä metodi ajetaan vain kerran.
     public void luoRoot(){
@@ -56,7 +60,7 @@ public class Komentotulkki {
             listaa(para);
         }
         else if (komento.equals(FIND)) {
-            find();
+            find(para);
         }
         else if (komento.equals(REMOVE)) {
             poista(para);
@@ -82,20 +86,12 @@ public class Komentotulkki {
         return 1;
     }
 
-    // Hakemiston luonti. Tarkistaa ettei samannimistä hakemistoa ole jo.
-    public void makeDir(String[] para){
-        if (para.length >= 2 && nykyHakemisto.hae(para[1]) == null)
-            nykyHakemisto.lisaa(new Hakemisto(new StringBuilder(para[1]), nykyHakemisto));
-        else
-            virhe();
-    }
-
     // Listaa joko nykyisen hakemiston
     // tai yksittäisen tiedoston (parametrilla)
     public void listaa(String[] para){
         if (para.length == 1 && nykyHakemisto != null)
             tulostaSisalto(nykyHakemisto.sisalto());
-        else if (para.length >= 2 && para[1] != null && nykyHakemisto.hae(para[1]) != null){
+        else if (para.length == 2 && para[1] != null && nykyHakemisto.hae(para[1]) != null){
             for (int i = 0; i < nykyHakemisto.sisalto().koko(); i++) {
                 if (nykyHakemisto.sisalto().alkio(i).equals(nykyHakemisto.hae(para[1]))){
                     System.out.println(nykyHakemisto.sisalto().alkio(i));
@@ -107,8 +103,8 @@ public class Komentotulkki {
     }
 
     // Listaa kaiken nykyisestä hakemistosta eteenpäin tiedostopuuna.
-    public void find(){
-        if (nykyHakemisto.sisalto().koko() > 0)
+    public void find(String[] para){
+        if (para.length == 1 && nykyHakemisto.sisalto().koko() > 0)
             puunTulostus(nykyHakemisto);
         else
             System.out.println("Error!");
@@ -116,7 +112,7 @@ public class Komentotulkki {
 
     // Tiedoston poisto hakemistosta.
     public void poista(String[] para){
-        if (para.length > 1 && nykyHakemisto.hae(para[1]) != null){
+        if (para.length == 2 && nykyHakemisto.hae(para[1]) != null){
             nykyHakemisto.poista(para[1]);
         }
         else
@@ -125,7 +121,10 @@ public class Komentotulkki {
 
     // Tiedoston kopiointi. Syväkopioi, eikä aseta vain viitettä.
     public void kopioi(String[] para){
-        if (para.length >= 3 && nykyHakemisto.hae(para[2]) == null && nykyHakemisto.hae(para[1]) != null) {
+        if (para.length == 3 &&
+                nykyHakemisto.hae(para[2]) == null &&
+                nykyHakemisto.hae(para[1]) != null &&
+                nykyHakemisto.hae(para[1]) instanceof Tiedosto) {
             Tiedosto apuTiedosto = new Tiedosto((Tiedosto)nykyHakemisto.hae(para[1]));
             apuTiedosto.asetaString(new StringBuilder(para[2]));
             nykyHakemisto.lisaa(new Tiedosto(apuTiedosto));
@@ -136,17 +135,42 @@ public class Komentotulkki {
     // Tiedoston uudelleennimeäminen. Jos samanniminen tiedosto
     // on jo olemassa, heittää ohjelma erroria.
     public void rename(String[] para){
-        if (para.length >= 3 && nykyHakemisto.hae(para[2]) == null)
+        if (para.length == 3 &&
+                nykyHakemisto.hae(para[2]) == null &&
+                nykyHakemisto.hae(para[1]) != null &&
+                nykyHakemisto.hae(para[1]) instanceof Tiedosto){
+            kopioi(para);
+            nykyHakemisto.poista(para[1]);
+        }
+        else if (para.length == 3 &&
+                nykyHakemisto.hae(para[2]) == null &&
+                nykyHakemisto.hae(para[1]) != null &&
+                nykyHakemisto.hae(para[1]) instanceof Hakemisto){
             nykyHakemisto.hae(para[1]).muutaNimi(para[2]);
+        }
         else
             virhe();
     }
 
     public void makeFile(String[] para){
-        if (para.length >= 3 && nykyHakemisto.hae(para[1]) == null ) {
+        if (para.length == 3 &&
+                nykyHakemisto.hae(para[1]) == null &&
+                tarkastaja.numeroTarkistus(para[2]) == true &&
+                tarkastaja.pisteTarkistus(para[1])) {
             int koko = Integer.parseInt(para[2]);
             nykyHakemisto.lisaa(new Tiedosto(new StringBuilder(para[1]), koko));
         }
+        else
+            virhe();
+    }
+
+    // Hakemiston luonti. Tarkistaa ettei samannimistä hakemistoa ole jo.
+    public void makeDir(String[] para){
+        if (para.length == 2 &&
+                nykyHakemisto.hae(para[1]) == null &&
+                para[1].charAt(0) != '.' &&
+                tarkastaja.pisteTarkistus(para[1]))
+            nykyHakemisto.lisaa(new Hakemisto(new StringBuilder(para[1]), nykyHakemisto));
         else
             virhe();
     }
@@ -159,7 +183,7 @@ public class Komentotulkki {
             polku.delete(0, polku.length());
             // Muuten seurataan näitä ohjeita.
         } else {
-            if (nykyHakemisto.toSimpleName().equals("root") && para[1].equals("..")) {
+            if (nykyHakemisto.toSimpleName().equals("root") && para[1].equals("..") || para.length > 2) {
                 virhe();
             } else {
                 if (para[1].equals("..")) {
@@ -186,17 +210,21 @@ public class Komentotulkki {
     // Tulostaa tiedostopuun siitä hakemistosta
     // lähtien missä käyttäjä sillä hetkellä on.
     public void puunTulostus(Hakemisto hakemisto){
+        polkuKopio.append("/");
         int i = 0;
         while (i < hakemisto.sisalto().koko()) {
             // Tulostetaan alkio kerrallaan hakemiston sisältö
-            System.out.println(hakemisto.sisalto().alkio(i));
+            System.out.println(polkuKopio.toString()+hakemisto.sisalto().alkio(i));
             // Jos alkio kohdassa i on Hakemisto-tyyppinen, tulostetaan rekursiivisesti
             // tämän sisältö, jonka jälkeen palataan jatkamaan edellinen tulostus
             // loppuun.
-            if (hakemisto.sisalto().alkio(i) instanceof Hakemisto)
+            if (hakemisto.sisalto().alkio(i) instanceof Hakemisto){
+                polkuKopio.append(((Hakemisto)hakemisto.sisalto().alkio(i)).toSimpleName());
                 puunTulostus((Hakemisto)hakemisto.sisalto().alkio(i));
+            }
             i++;
         }
+        polkuKopio.delete(polkuKopio.length() - hakemisto.toSimpleName().length(), polkuKopio.length());
     }
     
     public void virhe(){
