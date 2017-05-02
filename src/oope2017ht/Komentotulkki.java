@@ -49,95 +49,129 @@ public class Komentotulkki {
         if (komento.equals(EXIT)) {
             return 0;
         }
-
         else if (komento.equals(MAKEDIR)) {
-            if (para.length >= 2 && nykyHakemisto.hae(para[1]) == null)
-                nykyHakemisto.lisaa(new Hakemisto(new StringBuilder(para[1]), nykyHakemisto));
-            else
-                System.out.println(VIRHE);
+            makeDir(para);
         }
-
         else if (komento.equals(LIST)) {
-            if (para.length == 1 && nykyHakemisto != null)
-                tulostaSisalto(nykyHakemisto.sisalto());
-            else if (para.length >= 2 && para[1] != null && nykyHakemisto.hae(para[1]) != null){
-                for (int i = 0; i < nykyHakemisto.sisalto().koko(); i++) {
-                    if (nykyHakemisto.sisalto().alkio(i).equals(nykyHakemisto.hae(para[1]))){
-                        System.out.println(nykyHakemisto.sisalto().alkio(i));
-                    }
-                }
-            }
-            else
-                System.out.println(VIRHE);
+            listaa(para);
         }
-
         else if (komento.equals(FIND)) {
-            if (nykyHakemisto.sisalto().koko() > 0)
-                puunTulostus(nykyHakemisto);
-            else
-                System.out.println("Tyhjää täynnä kun koitat FIND:iä käyttää!");
+            find();
         }
-
         else if (komento.equals(REMOVE)) {
-            if (para.length > 1 && nykyHakemisto.hae(para[1]) != null){
-                nykyHakemisto.poista(para[1]);
-            }
-            else
-                System.out.println(VIRHE);
+            poista(para);
         }
-
         else if (komento.equals(COPY)) {
-            if (para.length >= 3) {
-                Tiedosto apuTiedosto = new Tiedosto((Tiedosto)nykyHakemisto.hae(para[1]));
-                apuTiedosto.asetaString(new StringBuilder(para[2]));
-                nykyHakemisto.lisaa(new Tiedosto(apuTiedosto));
-            }
-            else
-                System.out.println(VIRHE);
+            kopioi(para);
         }
-
         else if (komento.equals(RENAME)) {
-            if (para.length >= 3)
-            nykyHakemisto.hae(para[1]).muutaNimi(para[2]);
+            rename(para);
         }
-
         else if (komento.equals(MAKEFIL)) {
-            if (para.length >= 3 && nykyHakemisto.hae(para[1]) == null ) {
-                //  && para[2] != null && !para[2].isEmpty()
-                int koko = Integer.parseInt(para[2]);
-                nykyHakemisto.lisaa(new Tiedosto(new StringBuilder(para[1]), koko));
-            }
-            else
-                System.out.println(VIRHE);
+            makeFile(para);
         }
-
         else if (komento.equals(CHANGEDIR)) {
-            // Jos splitattu syöte on vain määritellyn kokoinen (1), siirrytään takaisin
-            // juurihakemistoon.
-            if (para.length == 1) {
-                nykyHakemisto = juuriHakemisto;
-                polku.delete(0, polku.length());
-            // Muuten seurataan näitä ohjeita.
-            } else {
-                if (nykyHakemisto.toSimpleName().equals("root") && para[1].equals("..")) {
-                    System.out.println(VIRHE);
-                } else {
-                    if (para[1].equals("..")) {
-                        polku.delete(polku.length() - nykyHakemisto.toSimpleName().length() - 1, polku.length());
-                        nykyHakemisto = nykyHakemisto.haeYli();
-                    } else if (nykyHakemisto.hae(para[1]) != null) {
-                        nykyHakemisto = (Hakemisto) nykyHakemisto.hae(para[1]);
-                        polku.append("/" + para[1]);
-                    } else
-                        System.out.println(VIRHE);
-                }
-            }
+            changeDir(para);
         }
         // Jos oikeanlaista syötettä ei anneta, kertoo ohjelma siitä käyttäjlle varmasti.
         else{
-            System.out.println(VIRHE);
+            virhe();
         }
+        // Palauttaa ykkösen jos halutaan jatkaa käyttöliittymässä aloitettua silmukkaa.
+        // Vain EXIT-komento palauttaa arvon 0, lopettaen ohjelman toiminnan.
         return 1;
+    }
+
+    // Hakemiston luonti. Tarkistaa ettei samannimistä hakemistoa ole jo.
+    public void makeDir(String[] para){
+        if (para.length >= 2 && nykyHakemisto.hae(para[1]) == null)
+            nykyHakemisto.lisaa(new Hakemisto(new StringBuilder(para[1]), nykyHakemisto));
+        else
+            virhe();
+    }
+
+    // Listaa joko nykyisen hakemiston
+    // tai yksittäisen tiedoston (parametrilla)
+    public void listaa(String[] para){
+        if (para.length == 1 && nykyHakemisto != null)
+            tulostaSisalto(nykyHakemisto.sisalto());
+        else if (para.length >= 2 && para[1] != null && nykyHakemisto.hae(para[1]) != null){
+            for (int i = 0; i < nykyHakemisto.sisalto().koko(); i++) {
+                if (nykyHakemisto.sisalto().alkio(i).equals(nykyHakemisto.hae(para[1]))){
+                    System.out.println(nykyHakemisto.sisalto().alkio(i));
+                }
+            }
+        }
+        else
+            System.out.println(VIRHE);
+    }
+
+    // Listaa kaiken nykyisestä hakemistosta eteenpäin tiedostopuuna.
+    public void find(){
+        if (nykyHakemisto.sisalto().koko() > 0)
+            puunTulostus(nykyHakemisto);
+        else
+            System.out.println("Error!");
+    }
+
+    // Tiedoston poisto hakemistosta.
+    public void poista(String[] para){
+        if (para.length > 1 && nykyHakemisto.hae(para[1]) != null){
+            nykyHakemisto.poista(para[1]);
+        }
+        else
+            virhe();
+    }
+
+    // Tiedoston kopiointi. Syväkopioi, eikä aseta vain viitettä.
+    public void kopioi(String[] para){
+        if (para.length >= 3 && nykyHakemisto.hae(para[2]) == null && nykyHakemisto.hae(para[1]) != null) {
+            Tiedosto apuTiedosto = new Tiedosto((Tiedosto)nykyHakemisto.hae(para[1]));
+            apuTiedosto.asetaString(new StringBuilder(para[2]));
+            nykyHakemisto.lisaa(new Tiedosto(apuTiedosto));
+        }
+        else
+            virhe();
+    }
+    // Tiedoston uudelleennimeäminen. Jos samanniminen tiedosto
+    // on jo olemassa, heittää ohjelma erroria.
+    public void rename(String[] para){
+        if (para.length >= 3 && nykyHakemisto.hae(para[2]) == null)
+            nykyHakemisto.hae(para[1]).muutaNimi(para[2]);
+        else
+            virhe();
+    }
+
+    public void makeFile(String[] para){
+        if (para.length >= 3 && nykyHakemisto.hae(para[1]) == null ) {
+            int koko = Integer.parseInt(para[2]);
+            nykyHakemisto.lisaa(new Tiedosto(new StringBuilder(para[1]), koko));
+        }
+        else
+            virhe();
+    }
+
+    public void changeDir(String[] para){
+        // Jos splitattu syöte on vain määritellyn kokoinen (1), siirrytään takaisin
+        // juurihakemistoon.
+        if (para.length == 1) {
+            nykyHakemisto = juuriHakemisto;
+            polku.delete(0, polku.length());
+            // Muuten seurataan näitä ohjeita.
+        } else {
+            if (nykyHakemisto.toSimpleName().equals("root") && para[1].equals("..")) {
+                virhe();
+            } else {
+                if (para[1].equals("..")) {
+                    polku.delete(polku.length() - nykyHakemisto.toSimpleName().length() - 1, polku.length());
+                    nykyHakemisto = nykyHakemisto.haeYli();
+                } else if (nykyHakemisto.hae(para[1]) != null) {
+                    nykyHakemisto = (Hakemisto) nykyHakemisto.hae(para[1]);
+                    polku.append("/" + para[1]);
+                } else
+                    virhe();
+            }
+        }
     }
 
     // Metodi listan tulostamiseen.
@@ -164,15 +198,10 @@ public class Komentotulkki {
             i++;
         }
     }
+    
+    public void virhe(){
+        System.out.println(VIRHE);
+    }
 }
 
-// Hautausmaa. Yritän muistaa poistaa tämän lopullista palautusta tehdessä.
-/*int laskuri = 0;
-        for (int i = 0; i < input.length(); i++){
-            if (input.charAt(i) == ' ')
-                laskuri++;
-        }
-        if (input.length() == 3 && laskuri > 0){
-            //System.out.println(VIRHE);
-        }*/
 
