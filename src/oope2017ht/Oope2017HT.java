@@ -1,14 +1,14 @@
 package oope2017ht;
 
 /**
- *
- *  Tämänkin työmaan teki Valtteri Vuori
- *  Vuori.Valtteri.J@student.uta.fi
- *
- *  Tästä se kaikki alkaa. Tämä luokka vain ja ainoastaan tervehtii
- *  käyttäjää ja alustaa sekä käynnistää käyttöliittymän.
- *
+ * <p>
+ * Olio-Ohjelmoinnin Perusteet 2017 Kevät - Harjoitustyö
+ * Tästä se kaikki alkaa. Tämä luokka vain ja ainoastaan tervehtii käyttäjää ja alustaa sekä käynnistää käyttöliittymän.
+ * <p>
+ * @author Valtteri Vuori (vuori.valtteri.j@student.uta.fi),
+ * Tietojenkäsittelytiede, Tampereen yliopisto.
  */
+
 
 
 

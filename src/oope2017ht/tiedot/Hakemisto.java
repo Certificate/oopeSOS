@@ -5,51 +5,58 @@ import fi.uta.csjola.oope.lista.LinkitettyLista;
 import oope2017ht.omalista.OmaLista;
 
 /**
- *  Tämänkin työmaan teki Valtteri Vuori
- *  Vuori.Valtteri.J@student.uta.fi
- *
- *  Hakemisto-alaluokka
- *  Johdettu Tiedosta. Toimii minkä tahansa Tiedon tallennuspaikkana
- *  hyödyntäen OmaListaa.
+ * <p>
+ *  Hakemisto-alaluokka. Johdettu Tiedosta. Toimii minkä tahansa Tiedon tallennuspaikkana hyödyntäen OmaListaa.
+ * <p>
+ * @author Valtteri Vuori (vuori.valtteri.j@student.uta.fi),
+ * Tietojenkäsittelytiede, Tampereen yliopisto.
  */
 
 
 public class Hakemisto extends Tieto implements Komennettava<Tieto>{
 
-    // Attribuutit
+    /** Attribuutit */
     private Hakemisto ylihakemisto;
     private OmaLista lista;
 
-    // Rakentaja
+    /** Rakentaja
+     * @param yli Yliluokka
+     * @param str Annetytava nimi*/
     public Hakemisto(StringBuilder str, Hakemisto yli){
         super(str);
         asetaYli(yli);
         lista = new OmaLista();
     }
 
-    // Setter
+    /** Setter - Asettaa ylihakemiston
+     * @param yli Asetettava ylihakemisto*/
     private void asetaYli(Hakemisto yli){
         this.ylihakemisto = yli;
     }
 
-    // Getter
+    /** Getter - Palauttaa ylihakemiston
+     * @return ylihakemisto*/
     public Hakemisto haeYli(){
         return this.ylihakemisto;
     }
 
 
-    /*
+    /**
     * Komennettava-rajapinnan
     * määrittelemät metodit.
     * */
 
 
-    // Hakee listan ssällön.
+    /** Hakee listan sisällön. */
     public LinkitettyLista sisalto(){
         return lista;
     }
 
-    // Kts. poista-metodi.
+    /** Haetaan annetun parametrin nimistä Tietoa listasta. Luodaan apuTiedosto sekä apuHakemisto jota vertaillessa saadaan oikea Tieto esiin listasta.
+     *
+     * @param nimi on String-muotoinen parametri.
+     * @return Parametrin niminen tiedosto listasta. Null jos haku ei onnistunut.
+     */
     public Tieto hae(String nimi){
         if(nimi != null) {
             Tiedosto apuTiedosto = new Tiedosto(new StringBuilder(nimi), 1);
@@ -66,12 +73,20 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
         else
             return null;
     }
-    // Tiedoston lisäys listaan. Itsensäselittävä oikeastaan.
+    /** Tiedoston lisäys listaan. Itsensäselittävä oikeastaan.
+     *
+     * @param lisattava on Tieto-muotoinen parametri, jota ollaan lisäämässä listaan.
+     * @return true jos lisäys onnistui, false jos ei onnistunut.
+     */
     public boolean lisaa(Tieto lisattava) {
         return lista.hae(lisattava) == null && lista.lisaa(lisattava);
     }
 
-    // Poistaa annetun parametrin nimisen tiedoston listasta.
+    /** Poistaa annetun parametrin nimisen tiedoston listasta.
+     *
+     * @param nimi on String-muotoinen parametri, jota ollaan poistamassa listasta.
+     * @return true jos poisto onnistui, null jos ei onnistunut.
+     */
     public Tieto poista(String nimi){
         if(nimi != null) {
             // Luodaan sekä apuTiedosto että -Hakemisto. Täten saadaan etsittyä annetunnimistä
@@ -93,13 +108,17 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
         }
     }
 
-    // Tulostuksessa käytettävät metodit.
 
-    // Itse uudelleenkirjoitettu toString metodi.
+    /** Tulostuksessa käytettävät metodit.
+     */
+
+    /** Itsekirjoitettu toString metodi, joka palauttaa super-kutsun lisäksi myös kauttaviivan sekä listan koon.
+     */
     public String toString() {
         return super.lueString() + "/ " +lista.koko();
     }
-    // toStringiin verrattuna simppelimpi tulostus. Ei listaa kauttaviivaa tai annetun hakemiston kokoa.
+    /** toStringiin verrattuna simppelimpi tulostus. Ei listaa kauttaviivaa tai annetun hakemiston kokoa.
+     */
     public String toSimpleName() {
         return super.lueString();
     }

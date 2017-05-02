@@ -3,8 +3,11 @@ package oope2017ht.tiedot;
 import oope2017ht.Tarkistaja;
 
 /**
- *   Tämänkin työmaan teki Valtteri Vuori
- *   Vuori.Valtteri.J@student.uta.fi
+ * <p>
+ * Harjoitustyö, Olio-ohjelmoinnin perusteet, kevät 2017.
+ * <p>
+ * @author Valtteri Vuori (vuori.valtteri.j@student.uta.fi),
+ * Tietojenkäsittelytiede, Tampereen yliopisto.
  *
  *   Nyt ollaan Tiedon äärellä. He he!
  *   Luokka on pohjana sekä Tiedostolle että
@@ -13,24 +16,27 @@ import oope2017ht.Tarkistaja;
 
 public abstract class Tieto implements Comparable<Tieto>{
 
-    // Attribuutit + tarkistajaluokan alustus
+    /** Attribuutit + tarkistajaluokan alustus */
     private Tarkistaja tarkistaja = new Tarkistaja();
     private StringBuilder nimi = new StringBuilder();
 
-    // Rakentajat
+    /** Rakentajat
+     * @param str Annettava nimi*/
     Tieto(StringBuilder str) {
         asetaString(str);
     }
 
-    // Kopiorakentaja-rakentaja ;)
+    /** Kopiorakentaja-rakentaja ;)
+     * @param alkuperainen Kopioitava Tieto*/
     Tieto(Tieto alkuperainen) {
         if(alkuperainen != null){
             asetaString(alkuperainen.lueStringBuilder());
         }
     }
-    //
-    // Setterit
-    //
+
+    /** Setterit
+     * @param str Annettava nimi
+     * @throws IllegalArgumentException jos annettu syöte ei ole oikeellinen*/
     public void asetaString(StringBuilder str) throws IllegalArgumentException {
         if (tarkistaja.tarkistus(str.toString())) {
             this.nimi = (str);
@@ -38,8 +44,9 @@ public abstract class Tieto implements Comparable<Tieto>{
             throw new IllegalArgumentException();
         }
     }
-    // Nimen muuttaminen. Käytetään RENAME-metodissa. Poistaa nimen kokonaan StringBuilder oliosta,
-    // ja asettaa sen uudelleen annetun parametrin mukaiseksi.
+    /** Nimen muuttaminen. Käytetään RENAME-metodissa. Poistaa nimen kokonaan StringBuilder oliosta, ja asettaa sen uudelleen annetun parametrin mukaiseksi.
+     * @param str Annettava nimi
+     * @throws IllegalArgumentException mikäli syöte ei ole oikeellinen*/
     public void muutaNimi(String str){
         if (!tarkistaja.tarkistus(str)) {
             throw new IllegalArgumentException();

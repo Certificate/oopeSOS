@@ -1,8 +1,11 @@
 package oope2017ht.tiedot;
 
 /**
- *   Tämänkin työmaan teki Valtteri Vuori
- *   Vuori.Valtteri.J@student.uta.fi
+ * <p>
+ * Harjoitustyö, Olio-ohjelmoinnin perusteet, kevät 2017.
+ * <p>
+ * @author Valtteri Vuori (vuori.valtteri.j@student.uta.fi),
+ * Tietojenkäsittelytiede, Tampereen yliopisto.
  *
  *   Tiedostoa mallintava aliluokka joka on johdettu Tiedosta.
  *   Tätä voidaan säilöä vaikka Hakemistoon!
@@ -10,21 +13,27 @@ package oope2017ht.tiedot;
 
 public class Tiedosto extends Tieto {
 
-    // Attribuutti
+    /** Attribuutti
+     */
     private int koko;
 
-    // Rakentajat
+    /** Rakentajat
+     * @param str Annettava nimi
+     * @param i Annettava koko*/
     public Tiedosto( StringBuilder str, int i) throws IllegalArgumentException {
         super(str);
         asetaKoko(i);
     }
-    // Kopiorakentaja.
+    /** Kopiorakentaja.
+     * @param alkuperainen Kopioitava Tiedosto*/
     public Tiedosto(Tiedosto alkuperainen){
         super(alkuperainen);
         asetaKoko(alkuperainen.lueKoko());
     }
 
-    // Setterit
+    /** Setterit
+     * @param i annettava koko
+     * @throws IllegalArgumentException*/
     private void asetaKoko(int i) throws IllegalArgumentException{
         if (i > 0) {
             this.koko = i;
@@ -34,12 +43,14 @@ public class Tiedosto extends Tieto {
         }
     }
 
-    // Getterit
+    /** Getterit
+     * @return koko*/
     private int lueKoko(){
         return this.koko;
     }
 
-    // Itsekirjoitettu toString-metodi, joka kutsuu yliluokan toString metodia.
+    /** Itsekirjoitettu toString-metodi, joka kutsuu yliluokan toString metodia.
+     * @return super() sekä Tiedoston koko */
     public String toString() {
         return super.toString() + " " + koko;
     }

@@ -1,18 +1,21 @@
 package oope2017ht;
 
 /**
- *
- *  Tämänkin työmaan teki Valtteri Vuori
- *  Vuori.Valtteri.J@student.uta.fi
- *
- *
- *  Tämä luokka toimii syötteen tarkistuksen parissa. Ei muuta.
- *  Aika itsestäänselvää eikös?
+ * <p>
+ * Tämä luokka toimii syötteen tarkistuksen parissa. Ei muuta. Aika itsestäänselvää eikös?
+ * <p>
+ * @author Valtteri Vuori (vuori.valtteri.j@student.uta.fi),
+ * Tietojenkäsittelytiede, Tampereen yliopisto.
  */
+
 
 public class Tarkistaja {
 
-    // Tarkistaa onko annettu syöte harjoitustyön sallittujen merkkien rajoissa.
+    /** Tarkistaa onko annettu syöte harjoitustyön sallittujen merkkien rajoissa.
+     *
+     * @param str annettu String muotoinen parametri.
+     * @return true jos parametri läpäisee tarkistuksen. false mikäli ei.
+     */
     public boolean tarkistus (String str){
         boolean ok = false;
         for (int i = 0; i < str.length(); i++){
@@ -32,8 +35,11 @@ public class Tarkistaja {
         return ok;
     }
 
-    // Tarkistaa onko annettu syöte desimaalinumero, vai ei.
-    // Esimerkiksi 3A ei ole desimaalinumero, vaan heksa-.
+    /** Tarkistaa onko annettu syöte desimaalinumero, vai ei. Esimerkiksi 3A ei ole desimaalinumero, vaan heksa-.
+     *
+     * @param str annettu String muotoinen parametri.
+     * @return true jos parametri läpäisee tarkistuksen. false mikäli ei.
+     */
     boolean numeroTarkistus(String str){
         boolean ok = false;
         for (int i = 0; i < str.length(); i++){
@@ -48,8 +54,11 @@ public class Tarkistaja {
         return ok;
     }
 
-    // Tarkistaa annetun String-arvon pisteiden lukumäärän.
-    // Jos niitä on enemmän kuin 1, palauttaa metodi false-arvon.
+    /** Tarkistaa annetun String-arvon pisteiden lukumäärän.
+     *
+     * @param str annettu String muotoinen parametri.
+     * @return true jos parametri läpäisee tarkistuksen. false mikäli ei.
+     */
     boolean pisteTarkistus(String str){
         boolean ok = false;
         int pisteLaskuri = 0;
@@ -74,6 +83,5 @@ public class Tarkistaja {
             }
         }
         return ok;
-
     }
 }

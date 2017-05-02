@@ -3,15 +3,17 @@ import oope2017ht.tiedot.*;
 import fi.uta.csjola.oope.lista.*;
 
 /**
- *  Tämänkin työmaan teki Valtteri Vuori
- *  Vuori.Valtteri.J@student.uta.fi
- *
- *  Komentoja tulkkaava komentotulkki ;)
+ * <p>
+ * Komentoja tulkkaava komentotulkki!
+ * <p>
+ * @author Valtteri Vuori (vuori.valtteri.j@student.uta.fi),
+ * Tietojenkäsittelytiede, Tampereen yliopisto.
  */
 class Komentotulkki {
 
-    // Alla kaikki harjoitustyössä käytettävät komennot
-    // katso dokumentaatio
+    /** Alla kaikki harjoitustyössä käytettävät komennot katso dokumentaatio */
+
+
     private static final String MAKEDIR = "md";
     private static final String MAKEFIL = "mf";
     private static final String CHANGEDIR = "cd";
@@ -21,41 +23,46 @@ class Komentotulkki {
     private static final String COPY = "cp";
     private static final String RENAME = "mv";
     private static final String EXIT = "exit";
-    // Vakioitu virhe.
+
+    /** Vakioitu virhe. */
     private static final String VIRHE = "Error!";
 
-    // Käytetyt Hakemistot. Käytetään liikkumiseen ja kutsumiseen.
+    /** Käytetyt Hakemistot. Käytetään liikkumiseen ja kutsumiseen. */
     private Hakemisto nykyHakemisto;
     private Hakemisto juuriHakemisto;
 
-    // Käyttöliittymässä näkyvä polku. StringBuilder tekee elämästä helppoa!
+    /** Käyttöliittymässä näkyvä polku. StringBuilder tekee elämästä helppoa! */
     private StringBuilder polku = new StringBuilder("");
 
-    // Tarkastaja-olio
+    /** Tarkastaja-olio */
     private Tarkistaja tarkastaja = new Tarkistaja();
 
-    // Luodaan root (= juuri)hakemisto. Tämä metodi ajetaan vain kerran.
+    /** Luodaan root (= juuri)hakemisto. Tämä metodi ajetaan vain kerran. */
     void luoRoot(){
         nykyHakemisto = new Hakemisto(new StringBuilder("root"), null);
         juuriHakemisto = nykyHakemisto;
     }
 
-    // Luetaan polku. Käyttöliittymä kutsuu tätä.
+    /** Luetaan polku. Käyttöliittymä kutsuu tätä. */
     void luePolku(){
         System.out.print(polku);
     }
 
-    // Varsinainen työläinen luokassa. Input tulee käyttöliittymästä ja tämä
-    // poika tulkkaa sen. Riippuen annetusta syötteestä metodi tekee eri
-    // asioita, kuten tiedoston luontia tai kansion vaihtoa.
+    /** Varsinainen työläinen luokassa. Input tulee käyttöliittymästä ja tämä
+    * poika tulkkaa sen. Riippuen annetusta syötteestä metodi tekee eri
+    * asioita, kuten tiedoston luontia tai kansion vaihtoa.
+     * @param input annettu syöte jonka ohjela tulkkaa ja muuttaa para-nimiseksi taulukoksi .split-komennon avulla.
+     *
+     * @return 1 jos ohjelma jatkaa, 0 jos ohjelman pitää lopettaa.
+     */
     int tulkkaa(String input){
 
         String[] para = input.split(" ");
         String komento = para[0];
 
-        // "Svitskeissi" jolla määritellään mikä luokan metodi ajetaan
-        // annetun komentoparametrin avulla. Oli muuten eka kerta kun tein switch-casen!
-        // Paljon mukavamman näköinen kuin se hirveä if-else härpäke.
+        /* "Svitskeissi" jolla määritellään mikä luokan metodi ajetaan
+        annetun komentoparametrin avulla. Oli muuten eka kerta kun tein switch-casen!
+        Paljon mukavamman näköinen kuin se hirveä if-else härpäke. */
         switch (komento) {
             case EXIT:
                 return 0;
@@ -83,18 +90,17 @@ class Komentotulkki {
             case CHANGEDIR:
                 changeDir(para);
                 break;
-            // Jos oikeanlaista syötettä ei anneta, kertoo ohjelma siitä käyttäjlle varmasti.
+            /* Jos oikeanlaista syötettä ei anneta, kertoo ohjelma siitä käyttäjlle varmasti. */
             default:
                 virhe();
                 break;
         }
-        // Palauttaa ykkösen jos halutaan jatkaa käyttöliittymässä aloitettua silmukkaa.
-        // Vain EXIT-komento palauttaa arvon 0, lopettaen ohjelman toiminnan.
+        /* Palauttaa ykkösen jos halutaan jatkaa käyttöliittymässä aloitettua silmukkaa. Vain EXIT-komento palauttaa arvon 0, lopettaen ohjelman toiminnan. */
         return 1;
     }
 
-    // Listaa joko nykyisen hakemiston
-    // tai yksittäisen tiedoston (parametrilla)
+    /**Listaa joko nykyisen hakemiston tai yksittäisen tiedoston (parametrilla)
+     * @param para on taulukko johon on säilötty komentona annettu syöte. Sisältää ainakin komennon. */
     private void listaa(String[] para){
         if (para.length == 1 && nykyHakemisto != null)
             tulostaSisalto(nykyHakemisto.sisalto());
@@ -109,7 +115,8 @@ class Komentotulkki {
             System.out.println(VIRHE);
     }
 
-    // Listaa kaiken nykyisestä hakemistosta eteenpäin tiedostopuuna.
+    /** Listaa kaiken nykyisestä hakemistosta eteenpäin tiedostopuuna.
+     * @param para on taulukko johon on säilötty komentona annettu syöte. Sisältää ainakin komennon.*/
     private void find(String[] para){
         if (para.length == 1 && nykyHakemisto.sisalto().koko() > 0) {
             puunTulostus(nykyHakemisto);
@@ -118,7 +125,8 @@ class Komentotulkki {
             System.out.println("Error!");
     }
 
-    // Tiedoston poisto hakemistosta.
+    /** Tiedoston poisto hakemistosta.
+     * @param para on taulukko johon on säilötty komentona annettu syöte. Sisältää ainakin komennon.*/
     private void poista(String[] para){
         if (para.length == 2 && nykyHakemisto.hae(para[1]) != null){
             nykyHakemisto.poista(para[1]);
@@ -127,7 +135,8 @@ class Komentotulkki {
             virhe();
     }
 
-    // Tiedoston kopiointi. Syväkopioi, eikä aseta vain viitettä.
+    /** Tiedoston kopiointi. Syväkopioi, eikä aseta vain viitettä.
+     * @param para on taulukko johon on säilötty komentona annettu syöte. Sisältää ainakin komennon.*/
     private void kopioi(String[] para){
         if (para.length == 3 &&
                 nykyHakemisto.hae(para[2]) == null &&
@@ -140,8 +149,8 @@ class Komentotulkki {
         else
             virhe();
     }
-    // Tiedoston uudelleennimeäminen. Jos samanniminen tiedosto
-    // on jo olemassa, heittää ohjelma erroria.
+    /** Tiedoston uudelleennimeäminen. Jos samanniminen tiedosto on jo olemassa, heittää ohjelma erroria.
+     * @param para on taulukko johon on säilötty komentona annettu syöte. Sisältää ainakin komennon.*/
     private void rename(String[] para){
         if (para.length == 3 &&
                 nykyHakemisto.hae(para[2]) == null &&
@@ -160,7 +169,8 @@ class Komentotulkki {
             virhe();
     }
 
-    // Tiedoston luonti. Muuttaa toisen parametrin int-arvoiseksi jonka jälkeen kutsuu Hakemiston lisaa-metodia.
+    /** Tiedoston luonti. Muuttaa toisen parametrin int-arvoiseksi jonka jälkeen kutsuu Hakemiston lisaa-metodia.
+     * @param para on taulukko johon on säilötty komentona annettu syöte. Sisältää ainakin komennon.*/
     private void makeFile(String[] para){
         if (para.length == 3 &&
                 nykyHakemisto.hae(para[1]) == null &&
@@ -173,7 +183,8 @@ class Komentotulkki {
             virhe();
     }
 
-    // Hakemiston luonti. Tarkistaa ettei samannimistä hakemistoa ole jo.
+    /** Hakemiston luonti. Tarkistaa ettei samannimistä hakemistoa ole jo.
+     * @param para on taulukko johon on säilötty komentona annettu syöte. Sisältää ainakin komennon.*/
     private void makeDir(String[] para){
         if (para.length == 2 &&
                 nykyHakemisto.hae(para[1]) == null &&
@@ -184,6 +195,10 @@ class Komentotulkki {
             virhe();
     }
 
+    /** Hakemistoa vaihtava metodi. Päivittää myös polun oikeaksi samalla.
+     *
+     * @param para on taulukko johon on säilötty komentona annettu syöte. Sisältää ainakin komennon.
+     */
     private void changeDir(String[] para){
         // Jos splitattu syöte on vain määritellyn kokoinen (1), siirrytään takaisin
         // juurihakemistoon.
@@ -207,7 +222,10 @@ class Komentotulkki {
         }
     }
 
-    // Metodi listan tulostamiseen.
+    /** Metodi listan tulostamiseen.
+     *
+     * @param lista on LinkitettyLista jonka alkiot metodi tulostaa.
+     */
     private static void tulostaSisalto(LinkitettyLista lista) {
         if (lista != null) {
             for (int i = 0; i < lista.koko(); i++) {
@@ -216,8 +234,10 @@ class Komentotulkki {
         }
     }
 
-    // Tulostaa tiedostopuun siitä hakemistosta
-    // lähtien missä käyttäjä sillä hetkellä on.
+    /** Tulostaa tiedostopuun siitä hakemistosta lähtien missä käyttäjä sillä hetkellä on.
+     *
+     * @param hakemisto on Hakemisto tyyppinen parametri josta lähtien tehdään tiedostopuun tulostus.
+     */
     private void puunTulostus(Hakemisto hakemisto){
         String polku = "";
         int i = 0;
@@ -239,12 +259,15 @@ class Komentotulkki {
             i++;
         }
     }
-    // Virheen tulostus läpi luokan.
+    /** Virheen tulostus läpi luokan.
+     * Melko itsensä selittävä, eikö?*/
     private void virhe(){
         System.out.println(VIRHE);
     }
 
-    // Polun tulostus find-silmukassa.
+    /** Polun tulostus find-silmukassa.
+     * @param tama Hakemisto-tyyppinen parametri jonka kautta saadaan tulostettua hakemistopolku tehdessä tiedostopuun tulostusta.
+     * @return hakemistopolku*/
     private String annaPolku(Hakemisto tama) {
         String hakemistopolku = "";
         while(tama != null){
