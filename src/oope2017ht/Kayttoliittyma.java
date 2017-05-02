@@ -4,8 +4,10 @@ import apulaiset.In;
 
 
 /**
- *  Tämän työmaan teki Valtteri Vuori
+ *  Tämänkin työmaan teki Valtteri Vuori
  *  Vuori.Valtteri.J@student.uta.fi
+ *
+ *  Käyttäjän ja ohjelman vuorovaikutuskeskus.
  */
 
 

@@ -3,9 +3,12 @@ package oope2017ht.tiedot;
 import oope2017ht.Tarkistaja;
 
 /**
- *  TIEDOT- YLILUOKKA
- *  Tästä johdetaan sekä Hakemisto että Tiedosto-luokat.
+ *   Tämänkin työmaan teki Valtteri Vuori
+ *   Vuori.Valtteri.J@student.uta.fi
  *
+ *   Nyt ollaan Tiedon äärellä. He he!
+ *   Luokka on pohjana sekä Tiedostolle että
+ *   Hakemistolle.
  */
 
 public abstract class Tieto implements Comparable<Tieto>{
@@ -37,6 +40,8 @@ public abstract class Tieto implements Comparable<Tieto>{
             throw new IllegalArgumentException();
         }
     }
+    // Nimen muuttaminen. Käytetään RENAME-metodissa. Poistaa nimen kokonaan StringBuilder oliosta,
+    // ja asettaa sen uudelleen annetun parametrin mukaiseksi.
     public void muutaNimi(String str){
         if (tarkistaja.tarkistus(str.toString()) == true) {
             this.nimi.delete(0, this.nimi.length());

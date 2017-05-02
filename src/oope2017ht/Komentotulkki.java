@@ -3,7 +3,10 @@ import oope2017ht.tiedot.*;
 import fi.uta.csjola.oope.lista.*;
 
 /**
- *  Komentoja tulkkaava tulkki :) .
+ *  Tämänkin työmaan teki Valtteri Vuori
+ *  Vuori.Valtteri.J@student.uta.fi
+ *
+ *  Komentoja tulkkaava komentotulkki ;)
  */
 class Komentotulkki {
     // Alla kaikki harjoitustyössä käytettävät komennot
@@ -212,30 +215,44 @@ class Komentotulkki {
     // Tulostaa tiedostopuun siitä hakemistosta
     // lähtien missä käyttäjä sillä hetkellä on.
     private void puunTulostus(Hakemisto hakemisto){
+        String polku = "";
         int i = 0;
-        while (i < hakemisto.sisalto().koko()) {
-            // Tulostetaan alkio kerrallaan hakemiston sisältö
-            //hakemisto.polku();
-            System.out.println(annaPolku()+hakemisto.sisalto().alkio(i));
-            if (nykyHakemisto != juuriHakemisto)
-                System.out.print("/");
-            // Jos alkio kohdassa i on Hakemisto-tyyppinen, tulostetaan rekursiivisesti
-            // tämän sisältö, jonka jälkeen palataan jatkamaan edellinen tulostus
-            // loppuun.
-            if (hakemisto.sisalto().alkio(i) instanceof Hakemisto){
+        while(i < hakemisto.sisalto().koko()) {
+            if(hakemisto.sisalto().alkio(i) instanceof Hakemisto) {
+                polku = annaPolku((Hakemisto)hakemisto.sisalto().alkio(i));
+            }
+            else if(hakemisto.sisalto().alkio(i) instanceof Tiedosto){
+                try{
+                    polku = annaPolku(hakemisto) + hakemisto.toSimpleName() + "/";
+                } catch(Exception e){
+                    polku = "";
+                }
+            }
+            System.out.println("/" + polku + hakemisto.sisalto().alkio(i));
+            if(hakemisto.sisalto().alkio(i) instanceof Hakemisto) {
                 puunTulostus((Hakemisto)hakemisto.sisalto().alkio(i));
             }
             i++;
         }
     }
-    
+    // Virheen tulostus läpi luokan.
     private void virhe(){
         System.out.println(VIRHE);
     }
 
-    public String annaPolku() {
-        // Aloitetaan nykyhakemistosta.
-        return nykyHakemisto.annaPolku(nykyHakemisto);
+    // Polun tulostus find-silmukassa.
+    public String annaPolku(Hakemisto tama) {
+        String polku = "";
+        while(tama != null){
+            tama = tama.haeYli();
+            if(tama.equals(juuriHakemisto)){
+                break;
+            }
+            else {
+                polku = tama.toSimpleName() + "/" + polku;
+            }
+        }
+        return polku;
     }
 }
 

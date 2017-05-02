@@ -4,6 +4,9 @@ import apulaiset.Ooperoiva;
 import fi.uta.csjola.oope.lista.*;
 
 /**
+ *   Tämänkin työmaan teki Valtteri Vuori
+ *   Vuori.Valtteri.J@student.uta.fi
+ *
  *   LinkitetystäListasta johdettu OmaLista luokka
  *   johon on implementoitu Ooperoiva-rajapinnassa ohjeistetut metodit.
  */
@@ -30,6 +33,8 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
             int i = 0;
             if (koko() > 0) {
                 while (i < koko()) {
+                    // Koska pisteet jostain syystä eivät toimineet algoritmini kanssa kunnolla,
+                    // muutetaan kaikki pisteet kauttaviivoiksi. Ja taas toimii vertailu!
                     String uusiNimi = uusi.toString().replaceAll("\\.","/");
                     String alkioNimi = alkio(i).toString().replaceAll("\\.","/");
                     int z = uusiNimi.compareTo(alkioNimi);

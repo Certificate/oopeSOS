@@ -1,6 +1,11 @@
 package oope2017ht;
 
 /**
+ *
+ *  Tämänkin työmaan teki Valtteri Vuori
+ *  Vuori.Valtteri.J@student.uta.fi
+ *
+ *
  *  Tämä luokka toimii syötteen tarkistuksen parissa. Ei muuta.
  *  Aika itsestäänselvää eikös?
  */
@@ -25,6 +30,8 @@ public class Tarkistaja {
         return ok;
     }
 
+    // Tarkistaa onko annettu syöte desimaalinumero, vai ei.
+    // Esimerkiksi 3A ei ole desimaalinumero, vaan heksa-.
     public boolean numeroTarkistus (String str){
         boolean ok = false;
         for (int i = 0; i < str.length(); i++){

@@ -1,7 +1,11 @@
 package oope2017ht.tiedot;
 
 /**
- *  Tiedostoa mallintava aliluokka Tiedosta.
+ *   Tämänkin työmaan teki Valtteri Vuori
+ *   Vuori.Valtteri.J@student.uta.fi
+ *
+ *   Tiedostoa mallintava aliluokka joka on johdettu Tiedosta.
+ *   Tätä voidaan säilöä vaikka Hakemistoon!
  */
 
 public class Tiedosto extends Tieto {
