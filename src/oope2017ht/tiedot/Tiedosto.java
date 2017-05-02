@@ -18,7 +18,7 @@ public class Tiedosto extends Tieto {
         super(str);
         asetaKoko(i);
     }
-
+    // Kopiorakentaja.
     public Tiedosto(Tiedosto alkuperainen){
         super(alkuperainen);
         asetaKoko(alkuperainen.lueKoko());
@@ -39,7 +39,7 @@ public class Tiedosto extends Tieto {
         return this.koko;
     }
 
-    // Kaikki muu
+    // Itsekirjoitettu toString-metodi, joka kutsuu yliluokan toString metodia.
     public String toString() {
         return super.toString() + " " + koko;
     }

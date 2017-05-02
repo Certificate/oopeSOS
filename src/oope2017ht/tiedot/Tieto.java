@@ -57,7 +57,7 @@ public abstract class Tieto implements Comparable<Tieto>{
         return this.nimi;
     }
 
-    // Kaikki muu
+    // Itsekirjoitettu toString-metodi
     public String toString() {
         return lueString();
     }
@@ -72,6 +72,7 @@ public abstract class Tieto implements Comparable<Tieto>{
         }
     }
 
+    // Itse uudelleenkirjoitettu compareTo metodi. Vertailee kahden eri Tiedon nimeä.
     public int compareTo(Tieto asia){
         int vertailu = this.nimi.toString().compareTo(asia.nimi.toString());
         System.out.println("tämänimitoString: "+this.nimi.toString() + "ja vertailtava: "+asia.nimi.toString());

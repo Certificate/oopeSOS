@@ -11,6 +11,8 @@ package oope2017ht;
  */
 
 public class Tarkistaja {
+
+    // Tarkistaa onko annettu syöte harjoitustyön sallittujen merkkien rajoissa.
     public boolean tarkistus (String str){
         boolean ok = false;
         for (int i = 0; i < str.length(); i++){

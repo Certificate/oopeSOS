@@ -9,6 +9,7 @@ import fi.uta.csjola.oope.lista.*;
  *  Komentoja tulkkaava komentotulkki ;)
  */
 class Komentotulkki {
+
     // Alla kaikki harjoitustyössä käytettävät komennot
     // katso dokumentaatio
     private static final String MAKEDIR = "md";
@@ -52,6 +53,9 @@ class Komentotulkki {
         String[] para = input.split(" ");
         String komento = para[0];
 
+        // "Svitskeissi" jolla määritellään mikä luokan metodi ajetaan
+        // annetun komentoparametrin avulla. Oli muuten eka kerta kun tein switch-casen!
+        // Paljon mukavamman näköinen kuin se hirveä if-else härpäke.
         switch (komento) {
             case EXIT:
                 return 0;
@@ -156,6 +160,7 @@ class Komentotulkki {
             virhe();
     }
 
+    // Tiedoston luonti. Muuttaa toisen parametrin int-arvoiseksi jonka jälkeen kutsuu Hakemiston lisaa-metodia.
     private void makeFile(String[] para){
         if (para.length == 3 &&
                 nykyHakemisto.hae(para[1]) == null &&

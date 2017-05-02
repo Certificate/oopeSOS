@@ -37,10 +37,12 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
         return this.ylihakemisto;
     }
 
-    //
-    // Komennettava-rajapinnan
-    // määrittelemät metodit.
-    //
+
+    /*
+    * Komennettava-rajapinnan
+    * määrittelemät metodit.
+    * */
+
 
     // Hakee listan ssällön.
     public LinkitettyLista sisalto(){
@@ -69,6 +71,7 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
         return lista.hae(lisattava) == null && lista.lisaa(lisattava);
     }
 
+    // Poistaa annetun parametrin nimisen tiedoston listasta.
     public Tieto poista(String nimi){
         if(nimi != null) {
             // Luodaan sekä apuTiedosto että -Hakemisto. Täten saadaan etsittyä annetunnimistä
@@ -91,9 +94,12 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
     }
 
     // Tulostuksessa käytettävät metodit.
+
+    // Itse uudelleenkirjoitettu toString metodi.
     public String toString() {
         return super.lueString() + "/ " +lista.koko();
     }
+    // toStringiin verrattuna simppelimpi tulostus. Ei listaa kauttaviivaa tai annetun hakemiston kokoa.
     public String toSimpleName() {
         return super.lueString();
     }

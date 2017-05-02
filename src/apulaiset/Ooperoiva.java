@@ -34,7 +34,7 @@ public interface Ooperoiva {
      * 
      * Jos parametri liittyy esimerkiksi kokonaislukuun 2 ja listan tietoalkiot
      * ovat [ 0, 3 ], on listan sisältö lisäyksen jälkeen [ 0, 2, 3 ],
-     * koska 0 < 2 < 3.
+     * koska 0 on pienempi kuin 2 joka on pienempi kuin 3.
      *
      * @param uusi viite olioon, jonka luokan tai luokan esivanhemman oletetaan
      * toteuttaneen Comparable-rajapinnan.
