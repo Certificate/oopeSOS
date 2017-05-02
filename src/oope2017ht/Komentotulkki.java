@@ -105,8 +105,10 @@ class Komentotulkki {
 
     // Listaa kaiken nykyisestä hakemistosta eteenpäin tiedostopuuna.
     private void find(String[] para){
-        if (para.length == 1 && nykyHakemisto.sisalto().koko() > 0)
+        if (para.length == 1 && nykyHakemisto.sisalto().koko() > 0) {
+            polkuKopio.append("/");
             puunTulostus(nykyHakemisto);
+        }
         else
             System.out.println("Error!");
     }
@@ -211,21 +213,27 @@ class Komentotulkki {
     // Tulostaa tiedostopuun siitä hakemistosta
     // lähtien missä käyttäjä sillä hetkellä on.
     private void puunTulostus(Hakemisto hakemisto){
-        polkuKopio.append("/");
-        int i = 0;
-        while (i < hakemisto.sisalto().koko()) {
-            // Tulostetaan alkio kerrallaan hakemiston sisältö
-            System.out.println(polkuKopio.toString()+hakemisto.sisalto().alkio(i));
-            // Jos alkio kohdassa i on Hakemisto-tyyppinen, tulostetaan rekursiivisesti
-            // tämän sisältö, jonka jälkeen palataan jatkamaan edellinen tulostus
-            // loppuun.
-            if (hakemisto.sisalto().alkio(i) instanceof Hakemisto){
-                polkuKopio.append(((Hakemisto)hakemisto.sisalto().alkio(i)).toSimpleName());
-                puunTulostus((Hakemisto)hakemisto.sisalto().alkio(i));
+        if (hakemisto.toSimpleName().equals("root"))
+            polkuKopio.append("/");
+        else {
+            polkuKopio.append(hakemisto.toSimpleName() + "/");
+            int i = 0;
+            int size;
+            while (i < hakemisto.sisalto().koko()) {
+                // Tulostetaan alkio kerrallaan hakemiston sisältö
+                System.out.println(polkuKopio.toString() + hakemisto.sisalto().alkio(i));
+                // Jos alkio kohdassa i on Hakemisto-tyyppinen, tulostetaan rekursiivisesti
+                // tämän sisältö, jonka jälkeen palataan jatkamaan edellinen tulostus
+                // loppuun.
+                if (hakemisto.sisalto().alkio(i) instanceof Hakemisto) {
+                    size = hakemisto.sisalto().koko();
+                    puunTulostus((Hakemisto) hakemisto.sisalto().alkio(i));
+                    polkuKopio.delete(polkuKopio.length() - size - 1, polkuKopio.length());
+                }
+                i++;
+
             }
-            i++;
         }
-        polkuKopio.delete(polkuKopio.length() - hakemisto.toSimpleName().length(), polkuKopio.length());
     }
     
     private void virhe(){
