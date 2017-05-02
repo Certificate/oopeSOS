@@ -30,6 +30,6 @@ public class Kayttoliittyma {
                 System.out.println("Error!");
             }
         }
-        System.out.print("Shell terminated.");
+        System.out.println("Shell terminated.");
     }
 }

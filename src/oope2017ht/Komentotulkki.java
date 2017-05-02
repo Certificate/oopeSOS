@@ -60,13 +60,15 @@ public class Komentotulkki {
         else if (komento.equals(LIST)) {
             if (para.length == 1 && nykyHakemisto != null)
                 tulostaSisalto(nykyHakemisto.sisalto());
-            else if (para.length >= 2 && para[1] != null && nykyHakemisto != null){
+            else if (para.length >= 2 && para[1] != null && nykyHakemisto.hae(para[1]) != null){
                 for (int i = 0; i < nykyHakemisto.sisalto().koko(); i++) {
                     if (nykyHakemisto.sisalto().alkio(i).equals(nykyHakemisto.hae(para[1]))){
                         System.out.println(nykyHakemisto.sisalto().alkio(i));
                     }
                 }
             }
+            else
+                System.out.println(VIRHE);
         }
 
         else if (komento.equals(FIND)) {
@@ -77,9 +79,11 @@ public class Komentotulkki {
         }
 
         else if (komento.equals(REMOVE)) {
-            if (para.length > 1){
+            if (para.length > 1 && nykyHakemisto.hae(para[1]) != null){
                 nykyHakemisto.poista(para[1]);
             }
+            else
+                System.out.println(VIRHE);
         }
 
         else if (komento.equals(COPY)) {

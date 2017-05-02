@@ -75,6 +75,7 @@ public abstract class Tieto implements Comparable<Tieto>{
 
     public int compareTo(Tieto asia){
         int vertailu = this.nimi.toString().compareTo(asia.nimi.toString());
+        System.out.println("tämänimitoString: "+this.nimi.toString() + "ja vertailtava: "+asia.nimi.toString());
         return vertailu;
 
     }

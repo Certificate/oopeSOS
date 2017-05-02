@@ -30,7 +30,9 @@ public class OmaLista extends LinkitettyLista implements Ooperoiva{
             int i = 0;
             if (koko() > 0) {
                 while (i < koko()) {
-                    int z = uusi.toString().compareTo(alkio(i).toString());
+                    String uusiNimi = uusi.toString().replaceAll("\\.","/");
+                    String alkioNimi = alkio(i).toString().replaceAll("\\.","/");
+                    int z = uusiNimi.compareTo(alkioNimi);
                     if (z > 0) {
                         i++;
                     } else if (z <= 0) {
