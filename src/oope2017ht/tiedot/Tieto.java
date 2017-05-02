@@ -14,19 +14,17 @@ import oope2017ht.Tarkistaja;
 public abstract class Tieto implements Comparable<Tieto>{
 
     // Attribuutit + tarkistajaluokan alustus
-    Tarkistaja tarkistaja = new Tarkistaja();
-    StringBuilder nimi = new StringBuilder();
+    private Tarkistaja tarkistaja = new Tarkistaja();
+    private StringBuilder nimi = new StringBuilder();
 
     // Rakentajat
-    public Tieto(StringBuilder str) {
+    Tieto(StringBuilder str) {
         asetaString(str);
     }
-    public Tieto() {
-        asetaString(new StringBuilder("null"));
-    }
+
     // Kopiorakentaja-rakentaja ;)
-    public Tieto(Tieto alkuperainen) {
-        if(alkuperainen instanceof Tieto){
+    Tieto(Tieto alkuperainen) {
+        if(alkuperainen != null){
             asetaString(alkuperainen.lueStringBuilder());
         }
     }
@@ -34,7 +32,7 @@ public abstract class Tieto implements Comparable<Tieto>{
     // Setterit
     //
     public void asetaString(StringBuilder str) throws IllegalArgumentException {
-        if (tarkistaja.tarkistus(str.toString()) == true) {
+        if (tarkistaja.tarkistus(str.toString())) {
             this.nimi = (str);
         } else {
             throw new IllegalArgumentException();
@@ -43,19 +41,19 @@ public abstract class Tieto implements Comparable<Tieto>{
     // Nimen muuttaminen. Käytetään RENAME-metodissa. Poistaa nimen kokonaan StringBuilder oliosta,
     // ja asettaa sen uudelleen annetun parametrin mukaiseksi.
     public void muutaNimi(String str){
-        if (tarkistaja.tarkistus(str.toString()) == true) {
+        if (!tarkistaja.tarkistus(str)) {
+            throw new IllegalArgumentException();
+        } else {
             this.nimi.delete(0, this.nimi.length());
             this.nimi.append(str);
-        } else {
-            throw new IllegalArgumentException();
         }
     }
     // Getterit
-    public String lueString() {
+    String lueString() {
         return this.nimi.toString();
     }
 
-    public StringBuilder lueStringBuilder() {
+    private StringBuilder lueStringBuilder() {
         return this.nimi;
     }
 
@@ -67,11 +65,7 @@ public abstract class Tieto implements Comparable<Tieto>{
     public boolean equals(Object asia){
         if (asia != null && asia  instanceof Tieto) {
             Tieto apu = (Tieto)asia;
-            if (this.lueString().equals(apu.lueString())) {
-                return true;
-            } else {
-                return false;
-            }
+            return this.lueString().equals(apu.lueString());
         }
         else{
             return false;

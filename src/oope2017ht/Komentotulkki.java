@@ -29,7 +29,6 @@ class Komentotulkki {
 
     // Käyttöliittymässä näkyvä polku. StringBuilder tekee elämästä helppoa!
     private StringBuilder polku = new StringBuilder("");
-    private StringBuilder polkuKopio = new StringBuilder("");
 
     // Tarkastaja-olio
     private Tarkistaja tarkastaja = new Tarkistaja();
@@ -241,18 +240,18 @@ class Komentotulkki {
     }
 
     // Polun tulostus find-silmukassa.
-    public String annaPolku(Hakemisto tama) {
-        String polku = "";
+    private String annaPolku(Hakemisto tama) {
+        String hakemistopolku = "";
         while(tama != null){
             tama = tama.haeYli();
             if(tama.equals(juuriHakemisto)){
                 break;
             }
             else {
-                polku = tama.toSimpleName() + "/" + polku;
+                hakemistopolku = tama.toSimpleName() + "/" + hakemistopolku;
             }
         }
-        return polku;
+        return hakemistopolku;
     }
 }
 

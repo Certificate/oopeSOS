@@ -32,7 +32,7 @@ public class Tarkistaja {
 
     // Tarkistaa onko annettu syöte desimaalinumero, vai ei.
     // Esimerkiksi 3A ei ole desimaalinumero, vaan heksa-.
-    public boolean numeroTarkistus (String str){
+    boolean numeroTarkistus(String str){
         boolean ok = false;
         for (int i = 0; i < str.length(); i++){
             char help = str.charAt(i);
@@ -48,7 +48,7 @@ public class Tarkistaja {
 
     // Tarkistaa annetun String-arvon pisteiden lukumäärän.
     // Jos niitä on enemmän kuin 1, palauttaa metodi false-arvon.
-    public boolean pisteTarkistus (String str){
+    boolean pisteTarkistus(String str){
         boolean ok = false;
         int pisteLaskuri = 0;
         for (int i = 0; i < str.length(); i++){
@@ -63,7 +63,6 @@ public class Tarkistaja {
                 if (str.charAt(i) == '.'){
                     pisteLaskuri++;
                     if (pisteLaskuri >= 2){
-                        pisteLaskuri = 0;
                         return false;
                     }
                 }

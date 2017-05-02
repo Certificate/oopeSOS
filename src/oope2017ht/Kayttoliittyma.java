@@ -16,7 +16,7 @@ public class Kayttoliittyma {
     private Komentotulkki tulkki = new Komentotulkki();
     private Tarkistaja tarkistaja = new Tarkistaja();
 
-    public void run(){
+    void run(){
         tulkki.luoRoot();
         int run = 1;
         while(run == 1) {

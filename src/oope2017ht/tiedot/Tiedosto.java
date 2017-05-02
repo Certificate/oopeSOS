@@ -25,7 +25,7 @@ public class Tiedosto extends Tieto {
     }
 
     // Setterit
-    public void asetaKoko(int i) throws IllegalArgumentException{
+    private void asetaKoko(int i) throws IllegalArgumentException{
         if (i > 0) {
             this.koko = i;
         }
@@ -35,8 +35,7 @@ public class Tiedosto extends Tieto {
     }
 
     // Getterit
-
-    public int lueKoko(){
+    private int lueKoko(){
         return this.koko;
     }
 
@@ -44,10 +43,5 @@ public class Tiedosto extends Tieto {
     public String toString() {
         return super.toString() + " " + koko;
     }
-
-    public String toSimpleName() {
-        return super.lueString();
-    }
-
 
 }

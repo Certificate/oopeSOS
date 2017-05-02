@@ -28,7 +28,7 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
     }
 
     // Setter
-    public void asetaYli(Hakemisto yli){
+    private void asetaYli(Hakemisto yli){
         this.ylihakemisto = yli;
     }
 
@@ -65,11 +65,8 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
             return null;
     }
     // Tiedoston lisäys listaan. Itsensäselittävä oikeastaan.
-    public boolean lisaa(Tieto lisattava){
-        if (lista.hae(lisattava) == null )
-            return lista.lisaa(lisattava);
-        else
-            return false;
+    public boolean lisaa(Tieto lisattava) {
+        return lista.hae(lisattava) == null && lista.lisaa(lisattava);
     }
 
     public Tieto poista(String nimi){
