@@ -19,7 +19,8 @@ public class Tiedosto extends Tieto {
 
     /** Rakentajat
      * @param str Annettava nimi
-     * @param i Annettava koko*/
+     * @param i Annettava koko
+     * @throws IllegalArgumentException*/
     public Tiedosto( StringBuilder str, int i) throws IllegalArgumentException {
         super(str);
         asetaKoko(i);

@@ -113,11 +113,13 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
      */
 
     /** Itsekirjoitettu toString metodi, joka palauttaa super-kutsun lisäksi myös kauttaviivan sekä listan koon.
+     * @return lueString sekä listan koko
      */
     public String toString() {
         return super.lueString() + "/ " +lista.koko();
     }
     /** toStringiin verrattuna simppelimpi tulostus. Ei listaa kauttaviivaa tai annetun hakemiston kokoa.
+     * @return lueString ilman listan kokoa
      */
     public String toSimpleName() {
         return super.lueString();

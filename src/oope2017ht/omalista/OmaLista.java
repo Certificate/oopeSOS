@@ -10,7 +10,6 @@ import fi.uta.csjola.oope.lista.*;
  * Tietojenkäsittelytiede, Tampereen yliopisto.
  */
 
-
 public class OmaLista extends LinkitettyLista implements Ooperoiva{
 
     /** Haetaan objektia listasta.

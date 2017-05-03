@@ -9,9 +9,6 @@ package oope2017ht;
  * Tietojenkäsittelytiede, Tampereen yliopisto.
  */
 
-
-
-
 public class Oope2017HT {
     public static void main(String[] args){
         System.out.println("Welcome to SOS.");

@@ -55,20 +55,31 @@ public abstract class Tieto implements Comparable<Tieto>{
             this.nimi.append(str);
         }
     }
-    // Getterit
+    /** Getterit
+     * @return nimi toString muodossa*/
     String lueString() {
         return this.nimi.toString();
     }
 
+    /** Luetaan StringBuilder tyyyppinen tieto
+     *
+     * @return nimi StringBuilder
+     */
     private StringBuilder lueStringBuilder() {
         return this.nimi;
     }
 
-    // Itsekirjoitettu toString-metodi
+    /** Itsekirjoitettu toString-metodi
+     * @return lueString Itsensäselittävä*/
     public String toString() {
         return lueString();
     }
 
+    /** Itse ylikirjoitettu equals-metodi. Vertailee kahden Tiedon nimeä.
+     *
+     * @param asia Vertailtava asia
+     * @return equals-arvo  jos annetut parametrit ovat ok. muutoin false.
+     */
     public boolean equals(Object asia){
         if (asia != null && asia  instanceof Tieto) {
             Tieto apu = (Tieto)asia;
@@ -79,7 +90,11 @@ public abstract class Tieto implements Comparable<Tieto>{
         }
     }
 
-    // Itse uudelleenkirjoitettu compareTo metodi. Vertailee kahden eri Tiedon nimeä.
+    /** Itse uudelleenkirjoitettu compareTo metodi. Vertailee kahden eri Tiedon nimeä.
+     *
+     * @param asia vertailtava asia
+     * @return vertailu int arvoinen tulos siitä, kumpi on isompi.
+     */
     public int compareTo(Tieto asia){
         int vertailu = this.nimi.toString().compareTo(asia.nimi.toString());
         System.out.println("tämänimitoString: "+this.nimi.toString() + "ja vertailtava: "+asia.nimi.toString());
