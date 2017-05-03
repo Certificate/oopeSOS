@@ -5,7 +5,8 @@ import apulaiset.In;
 
 /**
  * <p>
- * Käyttöliittymää mallintava luokka. Käyttäjän ja ohjelman keskusteluohjelma (Ei siis mikään Late Night With Oope'O'Brien)
+ * Käyttöliittymää mallintava luokka.
+ * Käyttäjän ja ohjelman keskusteluohjelma (Ei siis mikään Late Night With Oope'O'Brien)
  * <p>
  * @author Valtteri Vuori (vuori.valtteri.j@student.uta.fi),
  * Tietojenkäsittelytiede, Tampereen yliopisto.
@@ -17,7 +18,8 @@ public class Kayttoliittyma {
     private Komentotulkki tulkki = new Komentotulkki();
     private Tarkistaja tarkistaja = new Tarkistaja();
 
-    /**Käyttöliittymän ajoluokka. Luo juurihakemiston ja pitää yllä ohjelman ajoa vaativaa silmukkaa.
+    /**Käyttöliittymän ajoluokka. Luo juurihakemiston ja
+     * pitää yllä ohjelman ajoa vaativaa silmukkaa.
      * Yrittää catchata yleisimpiä virheitä.*/
     void run() {
         try {

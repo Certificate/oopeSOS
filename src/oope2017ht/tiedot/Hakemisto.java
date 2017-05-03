@@ -52,7 +52,8 @@ public class Hakemisto extends Tieto implements Komennettava<Tieto>{
         return lista;
     }
 
-    /** Haetaan annetun parametrin nimistä Tietoa listasta. Luodaan apuTiedosto sekä apuHakemisto jota vertaillessa saadaan oikea Tieto esiin listasta.
+    /** Haetaan annetun parametrin nimistä Tietoa listasta. Luodaan apuTiedosto sekä
+     * apuHakemisto jota vertaillessa saadaan oikea Tieto esiin listasta.
      *
      * @param nimi on String-muotoinen parametri.
      * @return Parametrin niminen tiedosto listasta. Null jos haku ei onnistunut.

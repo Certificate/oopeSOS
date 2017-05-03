@@ -44,7 +44,8 @@ public abstract class Tieto implements Comparable<Tieto>{
             throw new IllegalArgumentException();
         }
     }
-    /** Nimen muuttaminen. Käytetään RENAME-metodissa. Poistaa nimen kokonaan StringBuilder oliosta, ja asettaa sen uudelleen annetun parametrin mukaiseksi.
+    /** Nimen muuttaminen. Käytetään RENAME-metodissa. Poistaa nimen kokonaan
+     *  StringBuilder oliosta, ja asettaa sen uudelleen annetun parametrin mukaiseksi.
      * @param str Annettava nimi
      * @throws IllegalArgumentException mikäli syöte ei ole oikeellinen*/
     public void muutaNimi(String str){

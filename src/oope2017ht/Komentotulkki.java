@@ -95,7 +95,8 @@ class Komentotulkki {
                 virhe();
                 break;
         }
-        /* Palauttaa ykkösen jos halutaan jatkaa käyttöliittymässä aloitettua silmukkaa. Vain EXIT-komento palauttaa arvon 0, lopettaen ohjelman toiminnan. */
+        /* Palauttaa ykkösen jos halutaan jatkaa käyttöliittymässä aloitettua silmukkaa.
+        Vain EXIT-komento palauttaa arvon 0, lopettaen ohjelman toiminnan. */
         return 1;
     }
 
@@ -266,7 +267,7 @@ class Komentotulkki {
     }
 
     /** Polun tulostus find-silmukassa.
-     * @param tama Hakemisto-tyyppinen parametri jonka kautta saadaan tulostettua hakemistopolku tehdessä tiedostopuun tulostusta.
+     * @param tama Hakemisto-tyyppinen parametri jonka kautta saadaan tulostettua hakemistopolku tehdessä tulostusta.
      * @return hakemistopolku*/
     private String annaPolku(Hakemisto tama) {
         String hakemistopolku = "";
